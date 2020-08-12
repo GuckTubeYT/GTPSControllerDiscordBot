@@ -8,7 +8,7 @@ const { exec } = require("child_process");
 const fs = require('fs')
 const client = new Discord.Client();
 const config = require("./config.json");
-const group = ("Server Creator")
+const role = ("Server Creator")
 client.on("ready", () => {
   console.log(`Bot is Online Now!`); 
   client.user.setActivity(`GTPSController By GuckTube YT`);
@@ -25,7 +25,7 @@ client.on("message", async message => {
   }
 
   if(command === "start") {
-    if(!message.member.roles.cache.some(r=>[group].includes(r.name)) )
+    if(!message.member.roles.cache.some(r=>[role].includes(r.name)) )
       return message.reply("Sorry, you don't have permissions to use this!");
       const m = await message.channel.send("Please Wait...");
       try {
@@ -39,14 +39,14 @@ client.on("message", async message => {
   }
 
   if(command === "stop") {
-    if(!message.member.roles.cache.some(r=>[group].includes(r.name)) )
+    if(!message.member.roles.cache.some(r=>[role].includes(r.name)) )
       return message.reply("Sorry, you don't have permissions to use this!");
       exec("taskkill /f /im enet.exe")
       message.channel.send("Server Has Been Stopped!");
   }
 
   if(command === "count") {
-    if(!message.member.roles.cache.some(r=>[group].includes(r.name)) )
+    if(!message.member.roles.cache.some(r=>[role].includes(r.name)) )
       return message.reply("Sorry, you don't have permissions to use this!");
       const m = await message.channel.send("Please Wait...");
       const f1 = fs.readdirSync('player').length
