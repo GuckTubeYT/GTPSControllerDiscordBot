@@ -9,5 +9,6 @@ This app allow you to Control your GTPS Server with Discord Bot
 - Turn On/Off
 ## Version 1.5
 - "Background Issue" Fixed!
+- At line 31 or https://github.com/GuckTubeYT/GTPSControllerDiscordBot/blob/master/main.js#L31 you can remove /* if you want to use selected user
 # Warning
 At the line 11 Or https://github.com/GuckTubeYT/GTPSControllerDiscordBot/blob/master/main.js#L11 Dont forget to change Server Creator to your role
