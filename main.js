@@ -27,12 +27,6 @@ client.on("message", async message => {
   if(command === "start") {
     if(!message.member.roles.cache.some(r=>[group].includes(r.name)) )
       return message.reply("Sorry, you don't have permissions to use this!");
-
-      /* or you can use this code
-      if(message.author.id !== "User ID") return message.channel.send('Sorry, you don't have permissions to use this!')
-      Helped by Clayne
-      */
-
       const m = await message.channel.send("Please Wait...");
       try {
         if (fs.existsSync("enet.exe")) {
@@ -42,8 +36,6 @@ client.on("message", async message => {
       } catch(err) {
         m.edit("enet.exe Not Found! Please put this app into your gtps folder")
       }
-      
-      
   }
 
   if(command === "stop") {
@@ -51,6 +43,15 @@ client.on("message", async message => {
       return message.reply("Sorry, you don't have permissions to use this!");
       exec("taskkill /f /im enet.exe")
       message.channel.send("Server Has Been Stopped!");
+  }
+
+  if(command === "count") {
+    if(!message.member.roles.cache.some(r=>[group].includes(r.name)) )
+      return message.reply("Sorry, you don't have permissions to use this!");
+      const m = await message.channel.send("Please Wait...");
+      const f1 = fs.readdirSync('player').length
+      const f2 = fs.readdirSync('/home/directory').length
+m.edit("Player Count = " + f1 + "\nWorlds Count = " + f2);
   }
 });
 
