@@ -50,7 +50,7 @@ client.on("message", async message => {
       return message.reply("Sorry, you don't have permissions to use this!");
       const m = await message.channel.send("Please Wait...");
       const f1 = fs.readdirSync('player').length
-      const f2 = fs.readdirSync('/home/directory').length
+      const f2 = fs.readdirSync('worlds').length
 m.edit("Player Count = " + f1 + "\nWorlds Count = " + f2);
   }
 });
