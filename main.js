@@ -20,9 +20,10 @@ client.on("message", async message => {
   if(!message.content.startsWith(config.prefix)) return;
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
-
+  let pfix = config.prefix
+  const pf = `${pfix}`
   if(command === "help") {
-    message.channel.send("```gt!start (Start the server) (Owner Only)\ngt!stop (Stop the server) (Owner Only)\ngt!count (Count The Players and Worlds)\ngt!maintenance [on/off] (Maintenance Switch)```");
+    message.channel.send("```" + pf + "start (Start the server) (Owner Only)\n" + pf + "stop (Stop the server) (Owner Only)\n" + pf + "count (Count The Players and Worlds)\n" + pf + "maintenance [on/off] (Maintenance Switch)\n" + pf + "wdelete [World] (Delete World)\n" + pf + "pdelete [Player] (Delete World)```");
   }
 
   if(command === "start") {
@@ -70,7 +71,7 @@ client.on("message", async message => {
     if(!message.member.roles.cache.some(r=>[config.role].includes(r.name)) )
       return message.reply("Sorry, you don't have permissions to use this!");
       if (!args.length)
-      return message.channel.send('Command = gt!maintenance [on/off]')
+      return message.channel.send(`Command = ${pfix}maintenance [on/off]`)
 
       const m = await message.channel.send("Please Wait...");
       const command1 = args.shift().toLowerCase();
@@ -112,7 +113,7 @@ client.on("message", async message => {
         if(!message.member.roles.cache.some(r=>[config.role].includes(r.name)) )
       return message.reply("Sorry, you don't have permissions to use this!");
         if (!args.length)
-      return message.channel.send('Command = gt!pdelete [player]')
+      return message.channel.send(`Command = ${pfix}pdelete [player]`)
       const m = await message.channel.send("Please Wait...");
       fs.unlink(config.player + "\\" + args + ".json", function (err) {
         if (err)
@@ -128,7 +129,7 @@ client.on("message", async message => {
         if(!message.member.roles.cache.some(r=>[config.role].includes(r.name)) )
       return message.reply("Sorry, you don't have permissions to use this!");
         if (!args.length)
-      return message.channel.send('Command = gt!wdelete [player]')
+      return message.channel.send(`Command = ${pfix}wdelete [world]`)
       const m = await message.channel.send("Please Wait...");
       fs.unlink(config.world + "\\" + args + ".json", function (err) {
         if (err)
