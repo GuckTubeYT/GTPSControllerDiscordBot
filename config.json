@@ -1,4 +1,8 @@
 { 
-    "token"  : "Your Token",
-    "prefix" : "gt!"
+    "token"  : "NzA5MjA3NjM4NDI4MzUyNTIy.XrijFQ.vb0CzSGluk6OXTbZEk5cR4ameGQ",
+    "prefix" : "gt!",
+    "world" : "world",
+    "player" : "player",
+    "role" : "Server Creator",
+    "sdata" : "C:\\xampp\\htdocs\\growtopia\\server_data.php"
   }
