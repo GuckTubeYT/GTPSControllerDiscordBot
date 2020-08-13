@@ -14,5 +14,7 @@ This app allow you to Control your GTPS Server with Discord Bot
 - Count Folder Player and Worlds
 - Removed Selected User ID
 - Adding start.bat and Install.bat
-# Warning
-At the line 11 Or https://github.com/GuckTubeYT/GTPSControllerDiscordBot/blob/master/main.js#L11 Dont forget to change Server Creator to your role
+## Version 4.0
+- Added Remove World/Player
+- Added Maintenance Switch
+- Now, You can edit players folder, worlds folder, Roles on config.json
