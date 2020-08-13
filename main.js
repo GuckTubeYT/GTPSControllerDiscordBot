@@ -5,6 +5,7 @@
 */
 const Discord = require("discord.js");
 const { exec } = require("child_process");
+const kill = require("child_process").exec
 const fs = require('fs')
 const client = new Discord.Client();
 const config = require("./config.json");
@@ -41,7 +42,7 @@ client.on("message", async message => {
   if(command === "stop") {
     if(!message.member.roles.cache.some(r=>[role].includes(r.name)) )
       return message.reply("Sorry, you don't have permissions to use this!");
-      exec("taskkill /f /im enet.exe")
+      kill("taskkill.exe /f /im enet.exe")
       message.channel.send("Server Has Been Stopped!");
   }
 
