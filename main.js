@@ -186,6 +186,8 @@ client.on("message", async message => {
     }
     if (command === "rollworld")
     {
+    	if(!message.member.roles.cache.some(r=>[config.role].includes(r.name)) )
+      return message.reply("Sorry, you don't have permissions to use this!");
       if (!args.length)
       {
         return message.channel.send(`Are you sure to Rollback world? type ${pfix}rollworld yes to rollback world, if you dont want to rollback world, just ignore`)
@@ -218,6 +220,8 @@ client.on("message", async message => {
     }
     if (command === "rollplayer")
     {
+    	if(!message.member.roles.cache.some(r=>[config.role].includes(r.name)) )
+      return message.reply("Sorry, you don't have permissions to use this!");
       if (!args.length)
       {
         return message.channel.send(`Are you sure to Rollback player? type ${pfix}rollplayer yes to rollback player, if you dont want to rollback player, just ignore`)
