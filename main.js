@@ -9,7 +9,7 @@ const kill = require("child_process").exec
 const fs = require('fs')
 const client = new Discord.Client();
 const config = require("./config.json");
-
+const path = require("path");
 client.on("ready", () => {
   console.log(`Bot is Online Now!`); 
   client.user.setActivity(`GTPSController By GuckTube YT`);
@@ -121,7 +121,7 @@ client.on("message", async message => {
         m.edit('Player has been Deleted! Restarting...');
         kill("taskkill /f /im enet.exe")
         exec("start enet.exe")
-        m.edit("Server Has Been Restarted!")
+        message.channel.send("Server has been Restarted!")
       });
     }
     if (command === "wdelete")
@@ -137,8 +137,116 @@ client.on("message", async message => {
         m.edit('World has been Deleted! Restarting Server...');
         kill("taskkill /f /im enet.exe")
         exec("start enet.exe")
-        m.edit("Server Has Been Restarted!")
+        message.channel.send("Server has been Restarted!")
       });
+    }
+    if (command === "rollall")
+    {
+      if(!message.member.roles.cache.some(r=>[config.role].includes(r.name)) )
+      return message.reply("Sorry, you don't have permissions to use this!");
+      if (!args.length)
+      return message.channel.send(`Are you sure to Rollback all? Like Worlds and Players? type ${pfix}rollall yes to rollback all, if you dont want to rollback all, just ignore`)
+      const command2 = args.shift().toLowerCase();
+      if (command2 === "yes")
+      {
+        const m = await message.channel.send("Please Wait...")
+        const directory1 = config.player;
+        fs.readdir(directory1, (err, files1) => {
+          if (err)
+          return m.edit("player folder not found!, please set on config.json");
+        
+          for (const file1 of files1) {
+            fs.unlink(path.join(directory1, file1), err => {
+              if (err)
+              return m.edit("player folder not found!, please set on config.json");
+            });
+          }
+        });
+        const directory2 = config.world;
+        fs.readdir(directory2, (err, files2) => {
+          if (err)
+          return m.edit("world folder not found!, please set on config.json");
+        
+          for (const file2 of files2) {
+            fs.unlink(path.join(directory2, file2), err => {
+              if (err)
+              return m.edit("world folder not found!, please set on config.json");
+            });
+          }
+        });
+      m.edit("Rollback All is done! Restarting...");
+      kill("taskkill /f /im enet.exe")
+        exec("start enet.exe")
+        message.channel.send("Server has been Restarted!")
+      }
+      else
+      {
+        return message.channel.send(`Are you sure to Rollback all? Like Worlds and Players? type ${pfix}rollall yes to rollback all, if you dont want to rollback all, just ignore`)
+      }
+    }
+    if (command === "rollworld")
+    {
+      if (!args.length)
+      {
+        return message.channel.send(`Are you sure to Rollback world? type ${pfix}rollworld yes to rollback world, if you dont want to rollback world, just ignore`)
+      }
+      const command3 = args.shift().toLowerCase();
+      if (command3 === "yes")
+      {
+        const m = await message.channel.send("Please Wait...")
+        const directory2 = config.world;
+        fs.readdir(directory2, (err, files2) => {
+          if (err)
+          return m.edit("world folder not found!, please set on config.json");
+        
+          for (const file2 of files2) {
+            fs.unlink(path.join(directory2, file2), err => {
+              if (err)
+              return m.edit("world folder not found!, please set on config.json");
+            });
+          }
+        });
+        return m.edit(`World has been Rollbacked! Restarting...`)
+        kill("taskkill /f /im enet.exe")
+        exec("start enet.exe")
+        message.channel.send("Server has been Restarted!")
+      }
+      else
+      {
+        return message.channel.send(`Are you sure to Rollback world? type ${pfix}rollworld yes to rollback world, if you dont want to rollback world, just ignore`)
+      }
+    }
+    if (command === "rollplayer")
+    {
+      if (!args.length)
+      {
+        return message.channel.send(`Are you sure to Rollback player? type ${pfix}rollplayer yes to rollback player, if you dont want to rollback player, just ignore`)
+      }
+      const command3 = args.shift().toLowerCase();
+      if (command3 === "yes")
+      {
+        const directory2 = config.player;
+        const m = await message.channel.send("Please Wait...")
+        fs.readdir(directory2, (err, files2) => {
+          if (err)
+          return m.edit("player folder not found!, please set on config.json");
+        
+          for (const file2 of files2) {
+            fs.unlink(path.join(directory2, file2), err => {
+              if (err)
+              return m.edit("player folder not found!, please set on config.json");
+            });
+          }
+        });
+        m.edit(`player has been Rollbacked! Restarting...`)
+        kill("taskkill /f /im enet.exe")
+        exec("start enet.exe")
+        message.channel.send("Server has been Restarted!")
+      }
+      else
+      {
+        return message.channel.send(`Are you sure to Rollback player? type ${pfix}rollplayer yes to rollback player, if you dont want to rollback player, just ignore`)
+      }
     }
 });
 
