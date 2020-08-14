@@ -18,3 +18,7 @@ This app allow you to Control your GTPS Server with Discord Bot
 - Added Remove World/Player
 - Added Maintenance Switch
 - Now, You can edit players folder, worlds folder, Roles on config.json
+## Version 5.0
+- Added Rollback World
+- Added Rollback Player
+- Added Rollback All
