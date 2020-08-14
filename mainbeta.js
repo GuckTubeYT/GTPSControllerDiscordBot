@@ -191,7 +191,7 @@ client.on("message", async message => {
       if (command3 === "yes")
       {
         const m = await message.channel.send("Please Wait...")
-        const directory2 = config.player;
+        const directory2 = config.world;
         fs.readdir(directory2, (err, files2) => {
           if (err)
           return m.edit("world folder not found!, please set on config.json");
