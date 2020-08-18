@@ -206,7 +206,7 @@ client.on("message", async message => {
             });
           }
         });
-        return m.edit(`World has been Rollbacked! Restarting...`)
+        m.edit(`World has been Rollbacked! Restarting...`)
         kill("taskkill /f /im enet.exe")
         exec("start enet.exe")
         message.channel.send("Server has been Restarted!")
