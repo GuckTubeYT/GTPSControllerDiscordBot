@@ -23,7 +23,7 @@ client.on("message", async message => {
   let pfix = config.prefix
   const pf = `${pfix}`
   if(command === "help") {
-    message.channel.send("```" + pf + "start (Start the server) (Owner Only)\n" + pf + "stop (Stop the server) (Owner Only)\n" + pf + "count (Count The Players and Worlds)\n" + pf + "maintenance [on/off] (Maintenance Switch)\n" + pf + "wdelete [World] (Delete World)\n" + pf + "pdelete [Player] (Delete World)\n" + pf + "roll[all, player, world] (Rollback world, player, all)```");
+    message.channel.send("```" + pf + "start (Start the server) (Owner Only)\n" + pf + "stop (Stop the server) (Owner Only)\n" + pf + "count (Count The Players and Worlds)\n" + pf + "maintenance [on/off] (Maintenance Switch) (Owner Only)\n" + pf + "wdelete [World] (Delete World) (Owner Only)\n" + pf + "pdelete [Player] (Delete Player) (Owner Only)\n" + pf + "roll[all, player, world] (Rollback world, player, all) (Owner Only)```");
   }
 
   if(command === "start") {
@@ -48,8 +48,6 @@ client.on("message", async message => {
   }
 
   if(command === "count") {
-    if(!message.member.roles.cache.some(r=>[config.role].includes(r.name)) )
-      return message.reply("Sorry, you don't have permissions to use this!");
       const m = await message.channel.send("Please Wait...");
       fs.readdir(config.player, (err, files) => {
       if (err)
