@@ -1,5 +1,5 @@
 @echo off
-npm install discord.js child_process
+npm install
 echo Install Completed! Now, you just run start.bat
 pause
 exit
