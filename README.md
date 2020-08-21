@@ -28,4 +28,4 @@ This app allow you to Control your GTPS Server with Discord Bot
 - Added Rollback All
 ## Version 6.0
 - Added package.json (Thanks JadlionHD)
-- Added Change Password (Thanks JadlionHD) (BETA)
+- Added Change Password (Thanks JadlionHD)
