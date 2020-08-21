@@ -61,7 +61,7 @@ client.on("message", async message => {
 	}
 
   	bcrypt.genSalt(12, function(err, salt) {
-  		bcrypt.hash(args[1].join(" "), salt, function(err, hash) {
+  		bcrypt.hash(args[1], salt, function(err, hash) {
   			playername1.password = hash;
   			fs.writeFile(playername, JSON.stringify(playername2), function writeJSON(err) {
 				if (err)
