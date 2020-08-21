@@ -51,14 +51,24 @@ client.on("message", async message => {
   if(command === "forgotpass") {
   	if(!message.member.roles.cache.some(r => [config.role].includes(r.name)))
   		return message.reply("Sorry, you don't have permissions to use this!");
-  	if(!args)
-  		return message.reply(`Usage: ${pfix}forgotpass <playername> <new password>`);
+    const user = args[0]
+    const pass = args[1]
+    if(args[0] == null)
+        return message.reply(`Usage: ${pfix}forgotpass <playername> <new password>`);
+
+    if(args[1] == null)
+        return message.reply(`Usage: ${pfix}forgotpass <playername> <new password>`);
+
+    if (!fs.existsSync(config.player)) {
+        return message.reply("Player Folder not found! Please set on config.json")
+    }
+
+      if (!fs.existsSync(config.player + "\\" + user + ".json")) {
+      return  message.reply("Player Folder not found! Please set on config.json")
+    }
 
   	let playername1 = `./${config.player}/${args[0]}.json`
   	let playername2 = require(playername1);
-	if (!fs.existsSync(`./${config.player}`)) {
-	    message.reply("Player Folder not found! Please set on config.json")
-	}
 
   	bcrypt.genSalt(12, function(err, salt) {
   		bcrypt.hash(args[1], salt, function(err, hash) {
