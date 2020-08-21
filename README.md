@@ -22,3 +22,5 @@ This app allow you to Control your GTPS Server with Discord Bot
 - Added Rollback World
 - Added Rollback Player
 - Added Rollback All
+## Version 6.0
+- Added package.json (Thanks JadlionHD)
