@@ -311,10 +311,9 @@ client.on("message", async message => {
     }
       let playername1 = `./` + config.player + `/${args[0]}.json`
       let playername2 = require(playername1);
-
       bcrypt.genSalt(12, function(err, salt) {
         bcrypt.hash(pass, salt, function(err, hash) {
-          playername1.password = hash;
+          playername2.password = hash;
           fs.writeFile(playername1, JSON.stringify(playername2), function writeJSON(err) {
           if (err)
             return console.log(err);
