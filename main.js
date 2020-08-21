@@ -56,7 +56,7 @@ client.on("message", async message => {
 
   	let playername1 = `./${config.player}/${args[0]}.json`
   	let playername2 = require(playername1);
-	if (!fs.existsSync(config.player)) {
+	if (!fs.existsSync(`./${config.player}`)) {
 	    message.reply("Player Folder not found! Please set on config.json")
 	}
 
