@@ -3,7 +3,7 @@ This app allow you to Control your GTPS Server with Discord Bot
 <br /> Made by = GuckTube YT
 <br /> Helped by = Clayne and JadlionHD
 <br />
-<br /> REMEMBER = Dont Sell this app, because this is open source, and dont changing my owner/helper name, to your name, if you see it, please Contact GuckTubeYT#5000, or Clayne#1000, or JadlionHD#0987
+<br /> REMEMBER = Dont Sell this app, because this is open source, Dont remove my Credit and Helper credit, and dont changing my owner/helper name, to your name, if you see it, please Contact GuckTubeYT#5000, or Clayne#1000, or JadlionHD#0987
 # Dependencies
 - Node JS
 - Discord.js
