@@ -7,5 +7,18 @@ This app allow you to Control your GTPS Server with Discord Bot
 ## Version 1.0
 - This repository has been created
 - Turn On/Off
-# Warning
-At the line 36 Or https://github.com/GuckTubeYT/GTPSControllerDiscordBot/blob/5955801e8c63433093390c44441fee0bbbaf68e5/main.js#L36 Dont forget to change Owner Role to your role
+## Version 2.0
+- "Background Issue" Fixed!
+- At line 31 or https://github.com/GuckTubeYT/GTPSControllerDiscordBot/blob/master/main.js#L31 you can remove /* if you want to use selected user
+## Version 3.0
+- Count Folder Player and Worlds
+- Removed Selected User ID
+- Adding start.bat and Install.bat
+## Version 4.0
+- Added Remove World/Player
+- Added Maintenance Switch
+- Now, You can edit players folder, worlds folder, Roles on config.json
+## Version 5.0
+- Added Rollback World
+- Added Rollback Player
+- Added Rollback All
