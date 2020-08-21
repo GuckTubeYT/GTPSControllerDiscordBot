@@ -1,6 +1,6 @@
 /*
 * Coded by: GuckTube YT
-* Helped by: Clayne and Jadlion
+* Helped by: Clayne and JadlionHD
 * Credit Discord Bot example Code: eslachance
 */
 const Discord = require("discord.js");
@@ -13,7 +13,7 @@ const config = require("./config.json");
 const path = require("path");
 client.on("ready", () => {
   console.log(`Bot is Online Now!`); 
-  client.user.setActivity(`GTPSController By GuckTube YT`);
+  client.user.setActivity(`GTPSController By GuckTube YT and Helped by Clayne and JadlionHD`);
 });
 
 client.on("message", async message => {
