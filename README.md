@@ -1,5 +1,7 @@
 # GTPSControllerDiscordBot
 This app allow you to Control your GTPS Server with Discord Bot
+<br /> Made by = GuckTube YT
+<br /> Helped by = Clayne and JadlionHD
 # Dependencies
 - Node JS
 - Discord.js
