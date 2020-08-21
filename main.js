@@ -8,6 +8,7 @@ const { exec } = require("child_process");
 const kill = require("child_process").exec
 const fs = require('fs')
 const client = new Discord.Client();
+const bcrypt = require('bcrypt');
 const config = require("./config.json");
 const path = require("path");
 client.on("ready", () => {
@@ -45,6 +46,27 @@ client.on("message", async message => {
       return message.reply("Sorry, you don't have permissions to use this!");
       kill("taskkill /f /im enet.exe")
       message.channel.send("Server Has Been Stopped!");
+  }
+
+  if(command === "forgotpass") {
+  	if(!message.member.roles.cache.some(r => [config.role].includes(r.name)))
+  		return message.reply("Sorry, you don't have permissions to use this!");
+  	if(!args)
+  		return message.reply(`Usage: ${pfix}forgotpass <playername> <new password>`);
+
+  	let playername1 = `./players/${args[0]}.json`
+  	let playername2 = require(playername1);
+
+  	bcrypt.genSalt(12, function(err, salt) {
+  		bcrypt.hash(args[1].join(" "), salt, function(err, hash) {
+  			playername1.password = hash;
+  			fs.writeFile(playername, JSON.stringify(playername2), function writeJSON(err) {
+				if (err)
+					return console.log(err);
+				message.reply(`Changed password! of player named: ${args[0]}`);
+  			})
+  		})
+  	})
   }
 
   if(command === "count") {
