@@ -56,6 +56,9 @@ client.on("message", async message => {
 
   	let playername1 = `./players/${args[0]}.json`
   	let playername2 = require(playername1);
+	if (!fs.existsSync("./players")) {
+	    message.reply("Player Folder not found! Please set on config.json")
+	}
 
   	bcrypt.genSalt(12, function(err, salt) {
   		bcrypt.hash(args[1].join(" "), salt, function(err, hash) {
