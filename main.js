@@ -24,7 +24,7 @@ client.on("message", async message => {
   let pfix = config.prefix
   const pf = `${pfix}`
   if(command === "help") {
-    message.channel.send("```" + pf + "start (Start the server) (Owner Only)\n" + pf + "stop (Stop the server) (Owner Only)\n" + pf + "count (Count The Players and Worlds)\n" + pf + "maintenance [on/off] (Maintenance Switch) (Owner Only)\n" + pf + "wdelete [World] (Delete World) (Owner Only)\n" + pf + "pdelete [Player] (Delete Player) (Owner Only)\n" + pf + "roll[all, player, world] (Rollback world, player, all) (Owner Only)```");
+    message.channel.send("```" + pf + "start (Start the server) (Owner Only)\n" + pf + "stop (Stop the server) (Owner Only)\n" + pf + "count (Count The Players and Worlds)\n" + pf + "maintenance [on/off] (Maintenance Switch) (Owner Only)\n" + pf + "wdelete [World] (Delete World) (Owner Only)\n" + pf + "pdelete [Player] (Delete Player) (Owner Only)\n" + pf + "roll[all, player, world] (Rollback world, player, all) (Owner Only)\n" + pf + "forgotpass [Username] [New Password] (Changing Password)"```");
   }
 
   if(command === "start") {
