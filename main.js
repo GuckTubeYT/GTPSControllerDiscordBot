@@ -1,6 +1,6 @@
 /*
 * Coded by: GuckTube YT
-* Helped by: Clayne
+* Helped by: Clayne and Jadlion
 * Credit Discord Bot example Code: eslachance
 */
 const Discord = require("discord.js");
