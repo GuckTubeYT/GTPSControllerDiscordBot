@@ -271,7 +271,7 @@ client.on("message", async message => {
           for (const file2 of files2) {
             fs.unlink(path.join(directory2, file2), err => {
               if (err)
-              return m.edit("player folder not found!, please set on config.json");
+              return m.edit("Player Not Found!");
             });
           }
         });
