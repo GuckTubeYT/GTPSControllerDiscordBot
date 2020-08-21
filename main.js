@@ -1,6 +1,6 @@
 /*
 * Coded by: GuckTube YT
-* Helped by: Clayne and JadlionHD
+* Helped by: Clayne
 * Credit Discord Bot example Code: eslachance
 */
 const Discord = require("discord.js");
@@ -14,7 +14,7 @@ const bcrypt = require("bcrypt");
 
 client.on("ready", () => {
   console.log(`Bot is Online Now!`); 
-  client.user.setActivity(`GTPSController By GuckTube YT and Helped by Clayne and JadlionHD`);
+  client.user.setActivity(`GTPSController By GuckTube YT`);
 });
 
 client.on("message", async message => {
@@ -25,7 +25,7 @@ client.on("message", async message => {
   let pfix = config.prefix
   const pf = `${pfix}`
   if(command === "help") {
-    message.channel.send("```" + pf + "start (Start the server) (Owner Only)\n" + pf + "stop (Stop the server) (Owner Only)\n" + pf + "count (Count The Players and Worlds)\n" + pf + "maintenance [on/off] (Maintenance Switch) (Owner Only)\n" + pf + "wdelete [World] (Delete World) (Owner Only)\n" + pf + "pdelete [Player] (Delete Player) (Owner Only)\n" + pf + "roll[all, player, world] (Rollback world, player, all) (Owner Only)```");
+    message.channel.send("```" + pf + "start (Start the server) (Owner Only)\n" + pf + "stop (Stop the server) (Owner Only)\n" + pf + "count (Count The Players and Worlds)\n" + pf + "maintenance [on/off] (Maintenance Switch) (Owner Only)\n" + pf + "wdelete [World] (Delete World) (Owner Only)\n" + pf + "pdelete [Player] (Delete Player) (Owner Only)\n" + pf + "roll[all, player, world] (Rollback world, player, all) (Owner Only)\n" + pf + "forgotpass [Player] [New Password] (Changing Password) (Owner Only)```");
   }
 
   if(command === "start") {
