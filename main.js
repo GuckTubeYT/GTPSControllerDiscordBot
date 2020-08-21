@@ -54,9 +54,9 @@ client.on("message", async message => {
   	if(!args)
   		return message.reply(`Usage: ${pfix}forgotpass <playername> <new password>`);
 
-  	let playername1 = `./players/${args[0]}.json`
+  	let playername1 = `./${config.player}/${args[0]}.json`
   	let playername2 = require(playername1);
-	if (!fs.existsSync("./players")) {
+	if (!fs.existsSync(config.player)) {
 	    message.reply("Player Folder not found! Please set on config.json")
 	}
 
