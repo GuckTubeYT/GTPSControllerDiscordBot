@@ -25,7 +25,7 @@ client.on("message", async message => {
   let pfix = config.prefix
   const pf = `${pfix}`
   if(command === "help") {
-    message.channel.send("```" + pf + "start (Start the server) (Owner Only)\n" + pf + "stop (Stop the server) (Owner Only)\n" + pf + "count (Count The Players and Worlds)\n" + pf + "maintenance [on/off] (Maintenance Switch) (Owner Only)\n" + pf + "wdelete [World] (Delete World) (Owner Only)\n" + pf + "pdelete [Player] (Delete Player) (Owner Only)\n" + pf + "roll[all, player, world] (Rollback world, player, all) (Owner Only)\n" + pf + "forgotpass [Player] [New Password] (Changing Password) (Owner Only)\n" + pf + "givegems [Player] [Gems Amount] (Giving Gems) (Owner Only)```");
+    message.channel.send("```" + pf + "start (Start the server) (Owner Only)\n" + pf + "stop (Stop the server) (Owner Only)\n" + pf + "count (Count The Players and Worlds)\n" + pf + "maintenance [on/off] (Maintenance Switch) (Owner Only)\n" + pf + "wdelete [World] (Delete World) (Owner Only)\n" + pf + "pdelete [Player] (Delete Player) (Owner Only)\n" + pf + "roll[all, player, world] (Rollback world, player, all) (Owner Only)\n" + pf + "forgotpass [Player] [New Password] (Changing Password) (Owner Only)\n" + pf + "givegems [Player] [Gems Amount] (Giving Gems) (Owner Only)\n" + pf + "givelevel [Player] [level] (Giving level) (Owner Only)```");
   }
 
   if(command === "start") {
@@ -356,6 +356,42 @@ client.on("message", async message => {
         if (err)
           return console.log(err);
         message.reply(`Gems has been Gived!\n\nof player named: ${args[0]}\nAmount Gems: ${args[1]}\n\nPlease Re-login for take the effect`);
+        })
+    }
+    if (command === "givelevel")
+    {
+      if(!message.member.roles.cache.some(r => [config.role].includes(r.name)))
+        return message.reply("Sorry, you don't have permissions to use this!");
+        const user = args[0]
+        const levels = args[1]
+
+        if (args[0] == null)
+        {
+        return message.reply(`Usage: ${pfix}givelevel [Player] [Level]`)
+        }
+
+        if (args[1] == null)
+        {
+        return message.reply(`Usage: ${pfix}givelevel [Player] [Level]`)
+        }
+
+        if (!fs.existsSync(config.player)) {
+        return message.reply("Player Folder not found! Please set on config.json")
+      }
+
+        if (!fs.existsSync(config.player + "\\" + user + ".json")) {
+        return message.reply("Player Not Found!")
+      }
+
+      let playername1 = `./` + config.player + `/${args[0]}.json`
+      let playername2 = require(playername1);
+
+      playername2.level = levels;
+
+      fs.writeFile(playername1, JSON.stringify(playername2), function writeJSON(err) {
+        if (err)
+          return console.log(err);
+        message.reply(`Level has been Gived!\n\nof player named: ${args[0]}\nGive Level: ${args[1]}\n\nPlease Re-login for take the effect`);
         })
     }
 });
