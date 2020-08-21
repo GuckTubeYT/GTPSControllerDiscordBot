@@ -30,3 +30,4 @@ This app allow you to Control your GTPS Server with Discord Bot
 - Added package.json (Thanks JadlionHD)
 - Added Change Password (Thanks JadlionHD)
 - Adding give gems
+- Adding give level
