@@ -386,7 +386,9 @@ client.on("message", async message => {
       let playername1 = `./` + config.player + `/${args[0]}.json`
       let playername2 = require(playername1);
 
-      playername2.level = levels;
+     const levelss =  parseInt(levels)
+
+      playername2.level = levelss;
 
       fs.writeFile(playername1, JSON.stringify(playername2), function writeJSON(err) {
         if (err)
