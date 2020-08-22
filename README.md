@@ -1,33 +1,35 @@
 # GTPSControllerDiscordBot
-This app allow you to Control your GTPS Server with Discord Bot
-<br /> Made by = GuckTube YT
+With this application, you can control your own private server, using Discord Bot!
+<br /> Created By = GuckTubeYT
 <br /> Helped by = Clayne and JadlionHD
 <br />
-<br /> REMEMBER = Dont Sell this app, because this is open source, Dont remove my Credit and Helper credit, and dont changing my owner/helper name, to your name, if you see it, please Contact GuckTubeYT#5000, or Clayne#1000, or JadlionHD#0987
+<br /> Remember
+<br />Do not sell this application, because this application already open source.
+<br />Do not change Creator name, to your own name.
+<br />If you see someone who sell the application or change creator name, Please DM GuckTubeYT#5000, Clayne#1000, or JadlionHD#0987
 # Dependencies
 - Node JS
 - Discord.js
-# Changelog
 ## Version 1.0
-- This repository has been created
+- This Repository just created
 - Turn On/Off
 ## Version 2.0
-- "Background Issue" Fixed!
-- At line 31 or https://github.com/GuckTubeYT/GTPSControllerDiscordBot/blob/master/main.js#L31 you can remove /* if you want to use selected user
+- "Background Issue" Has been Fixed!
+- In line 31 or https://github.com/GuckTubeYT/GTPSControllerDiscordBot/blob/master/main.js#L31 you can remove /* if you want to use selected user
 ## Version 3.0
-- Count Folder Player and Worlds
-- Removed Selected User ID
-- Adding start.bat and Install.bat
+- Added Count for Folder Player and Worlds
+- Deleted UserID Options
+- Added start.bat and Install.bat (So it's easier)
 ## Version 4.0
-- Added Remove World/Player
+- Added System delete for World/Player
 - Added Maintenance Switch
-- Now, You can edit players folder, worlds folder, Roles on config.json
+- Now, you can edit players folder, worlds folder and roles in config.json
 ## Version 5.0
-- Added Rollback World
-- Added Rollback Player
-- Added Rollback All
+- Added Rollback Options for World
+- Added Rollback Options for Player
+- Added Rollback Options for All
 ## Version 6.0
-- Added package.json (Thanks JadlionHD)
-- Added Change Password (Thanks JadlionHD)
-- Adding give gems
-- Adding give level
+- Added package.json (Thanks to JadlionHD)
+- Added Change Password system (Thanks to JadlionHD)
+- Added give gems
+- Added give level
