@@ -32,4 +32,4 @@ With this application, you can control your own private server, using Discord Bo
 - Added package.json (Thanks to JadlionHD)
 - Added Change Password system (Thanks to JadlionHD)
 - Added give gems (BETA)
-- Added give level (BETA)
+- Added give level (Current Level + New Level)
