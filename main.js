@@ -350,7 +350,9 @@ client.on("message", async message => {
       let playername1 = `./` + config.player + `/${args[0]}.json`
       let playername2 = require(playername1);
 
-      playername2.gems = gem;
+      const gemm =  parseInt(gem)
+
+      playername2.gems = gemm;
 
       fs.writeFile(playername1, JSON.stringify(playername2), function writeJSON(err) {
         if (err)
