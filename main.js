@@ -32,12 +32,12 @@ client.on("message", async message => {
     if(!message.member.roles.cache.some(r=>[config.role].includes(r.name)) )
       return message.reply("Sorry, you don't have permissions to use this!");
       const m = await message.channel.send("Please Wait...");
-        fs.access("enet.exe", (err) => {
+        fs.access(config.exegtps, (err) => {
           if (err)
           {
-          return m.edit("enet.exe Not Found! Please put this app into your gtps folder\nIf it still error, change your gtps exe, to your enet.exe")
+          return m.edit(config.exegtps + " Not Found! Please set on config.json")
           }
-            exec("start enet.exe")
+            exec(`start ${config.exegtps}`)
           m.edit("Server is UP")
         });
    }
@@ -45,7 +45,7 @@ client.on("message", async message => {
   if(command === "stop") {
     if(!message.member.roles.cache.some(r=>[config.role].includes(r.name)) )
       return message.reply("Sorry, you don't have permissions to use this!");
-      kill("taskkill /f /im enet.exe")
+      kill(`taskkill /f /im ${config.exegtps}`)
       message.channel.send("Server Has Been Stopped!");
   }
 
@@ -196,14 +196,14 @@ client.on("message", async message => {
           }
         });
       m.edit("Rollback All is done! Restarting...");
-      kill("taskkill /f /im enet.exe")
-      fs.access("enet.exe", (err) => {
-        if (err)
-        {
-        return m.edit("enet.exe Not Found! Please put this app into your gtps folder\nIf it still error, change your gtps exe, to your enet.exe")
-        }
-          exec("start enet.exe")
-      });
+      kill(`taskkill /f /im ${config.exegtps}`)
+        fs.access(config.exegtps, (err) => {
+          if (err)
+          {
+          return m.edit(`${config.exegtps} Not Found! Please set on config.json`)
+          }
+          exec(`start ${config.exegtps}`)
+        });
         message.channel.send("Server has been Restarted!")
       }
       else
@@ -236,13 +236,13 @@ client.on("message", async message => {
           }
         });
         m.edit(`World has been Rollbacked! Restarting...`)
-        kill("taskkill /f /im enet.exe")
-        fs.access("enet.exe", (err) => {
+        kill(`taskkill /f /im ${config.exegtps}`)
+        fs.access(config.exegtps, (err) => {
           if (err)
           {
-          return m.edit("enet.exe Not Found! Please put this app into your gtps folder\nIf it still error, change your gtps exe, to your enet.exe")
+          return m.edit(`${config.exegtps} Not Found! Please set on config.json`)
           }
-            exec("start enet.exe")
+          exec(`start ${config.exegtps}`)
         });
         message.channel.send("Server has been Restarted!")
       }
@@ -276,13 +276,13 @@ client.on("message", async message => {
           }
         });
         m.edit(`player has been Rollbacked! Restarting...`)
-        kill("taskkill /f /im enet.exe")
-        fs.access("enet.exe", (err) => {
+        kill(`taskkill /f /im ${config.exegtps}`)
+        fs.access(config.exegtps, (err) => {
           if (err)
           {
-          return m.edit("enet.exe Not Found! Please put this app into your gtps folder\nIf it still error, change your gtps exe, to your enet.exe")
+          return m.edit(`${config.exegtps} Not Found! Please set on config.json`)
           }
-            exec("start enet.exe")
+          exec(`start ${config.exegtps}`)
         });
         message.channel.send("Server has been Restarted!")
       }
