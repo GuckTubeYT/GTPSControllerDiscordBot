@@ -1,8 +1,9 @@
 { 
     "token"  : "Your Token Bot",
     "prefix" : "gt!",
-    "world" : "world",
-    "player" : "player",
+    "exegtps" : "server.exe",
+    "world" : "worlds",
+    "player" : "players",
     "role" : "Server Creator",
     "sdata" : "C:\\xampp\\htdocs\\growtopia\\server_data.php"
-  }
+}
