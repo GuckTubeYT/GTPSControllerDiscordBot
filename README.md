@@ -10,6 +10,7 @@ With this application, you can control your own private server, using Discord Bo
 # Dependencies
 - Node JS
 - Discord.js
+- bcrpyt (Hashing Password)
 ## Version 1.0
 - This Repository just created
 - Turn On/Off
