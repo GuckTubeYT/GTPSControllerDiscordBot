@@ -324,10 +324,12 @@ client.on("message", async message => {
     }
     if (command === "givegems")
     {
+      let playername1 = `./` + config.player + `/${args[0]}.json`
+      let playername2 = require(playername1);
       if(!message.member.roles.cache.some(r => [config.role].includes(r.name)))
         return message.reply("Sorry, you don't have permissions to use this!");
         const user = args[0]
-        const gem = args[1]
+        const gems = args[1]
 
         if (args[0] == null)
         {
@@ -338,31 +340,30 @@ client.on("message", async message => {
         {
         return message.reply(`Usage: ${pfix}givegems [Player] [Gems Amount]`)
         }
-
+        
         if (!fs.existsSync(config.player)) {
-        return message.reply("Player Folder not found! Please set on config.json")
+          return message.reply("Player Folder not found! Please set on config.json")
+        }
+  
+          if (!fs.existsSync(config.player + "\\" + user + ".json")) {
+        return  message.reply("Player Not Found!")
       }
+        
+          var contents = fs.readFileSync(playername1);
+          var jsonContent = JSON.parse(contents);
+          var newgem2 = parseInt(jsonContent.gems)
+          var gemargs = parseInt(gems)
+          newgem2 += gemargs
+     const gemss =  parseInt(newgem2)
 
-        if (!fs.existsSync(config.player + "\\" + user + ".json")) {
-        return message.reply("Player Not Found!")
-      }
+      playername2.gems = gemss;
 
-      let playername1 = `./` + config.player + `/${args[0]}.json`
-      let playername2 = require(playername1);
-
-      const gemm =  parseInt(gem)
-
-      playername2.gems = gemm;
-
-      fs.writeFile(playername1, JSON.stringify(playername2), function writeJSON(err) {
-        if (err)
-          return console.log(err);
-        message.reply(`Gems has been Gived!\n\nof player named: ${args[0]}\nAmount Gems: ${args[1]}\n\nPlease Re-login for take the effect`);
+      fs.writeFile(playername1, JSON.stringify(playername2), function writeJSON() {
+          return message.reply(`Gems has been Gived!\n\nof player named: ${args[0]}\nGems Amount: ${args[1]}\nTotal Gems: ${playername2.gems}\n\nPlease Re-login for take the effect`)
         })
     }
     if (command === "givelevel")
     {
-      const  curlev = `./` + config.player + `/${args[0]}curlev.txt`
       let playername1 = `./` + config.player + `/${args[0]}.json`
       let playername2 = require(playername1);
       if(!message.member.roles.cache.some(r => [config.role].includes(r.name)))
@@ -379,19 +380,19 @@ client.on("message", async message => {
         {
         return message.reply(`Usage: ${pfix}givelevel [Player] [Level]`)
         }
-        fs.writeFile(curlev, JSON.stringify(playername2.level), function writeJSON() {
-          console.log("curlev = " + curlev + "\n")
-        })
+        
         if (!fs.existsSync(config.player)) {
-        return message.reply("Player Folder not found! Please set on config.json")
+          return message.reply("Player Folder not found! Please set on config.json")
+        }
+  
+          if (!fs.existsSync(config.player + "\\" + user + ".json")) {
+        return  message.reply("Player Not Found!")
       }
-
-        if (!fs.existsSync(config.player + "\\" + user + ".json")) {
-      return  message.reply("Player Not Found!")
-    }
-        fs.readFile(curlev, 'utf8', function(err, newlev1) {
-          if (err) throw err;
-          var newlev2 = parseInt(newlev1)
+        
+          var contents = fs.readFileSync(playername1);
+          var jsonContent = JSON.parse(contents);
+          var newlev2 = parseInt(jsonContent.level)
+          console.log(newlev2)
           var levargs = parseInt(levels)
           newlev2 += levargs
      const levelss =  parseInt(newlev2)
@@ -399,9 +400,8 @@ client.on("message", async message => {
       playername2.level = levelss;
 
       fs.writeFile(playername1, JSON.stringify(playername2), function writeJSON() {
-          return message.reply(`Level has been Gived!\n\nof player named: ${args[0]}\nGive Level: ${args[1]}\nTotal Level: ${playername2.level}\nPlease Re-login for take the effect`)
+          return message.reply(`Level has been Gived!\n\nof player named: ${args[0]}\nGive Level: ${args[1]}\nTotal Level: ${playername2.level}\n\nPlease Re-login for take the effect`)
         })
-      });
     }
 
     if (command === "giverole")
