@@ -38,6 +38,6 @@ With this application, you can control your own private server, using Discord Bo
 ## Version 6.0
 - Added package.json (Thanks to JadlionHD)
 - Added Change Password system (Thanks to JadlionHD)
-- Added give gems (BETA)
-- Added give level (Current Level + New Level)
+- Added give gems = Current gems + new gems
+- Added give level = Current Level + New Level
 - Added give role
