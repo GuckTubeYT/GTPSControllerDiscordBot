@@ -7,6 +7,12 @@ With this application, you can control your own private server, using Discord Bo
 <br />Do not sell this application, because this application already open source.
 <br />Do not change Creator name, to your own name.
 <br />If you see someone who sell the application or change creator name, Please DM GuckTubeYT#5000, Clayne#1000, or JadlionHD#0987
+# How to Use
+1. Download NodeJS = https://nodejs.org/en/download/
+2. Put This app, to your GTPS Folder
+3. Setting on config.json
+4. Press install.bat
+5. When done installing, press start.bat
 # Dependencies
 - Node JS
 - Discord.js
