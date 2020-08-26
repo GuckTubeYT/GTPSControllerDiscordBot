@@ -119,13 +119,13 @@ client.on("message", async message => {
         if (err)
         return m.edit("Player Not Found!");
         m.edit('Player has been Deleted! Restarting...');
-        kill("taskkill /f /im enet.exe")
-        fs.access("enet.exe", (err) => {
+        kill(`taskkill /f /im ${config.exegtps}`)
+        fs.access(config.exegtps, (err) => {
           if (err)
           {
-          return m.edit("enet.exe Not Found! Please put this app into your gtps folder\nIf it still error, change your gtps exe, to your enet.exe")
+          return m.edit(config.exegtps + " Not Found! Please set on config.json")
           }
-            exec("start enet.exe")
+          exec(`start ${config.exegtps}`)
         });
         message.channel.send("Server has been Restarted!")
       });
@@ -141,13 +141,13 @@ client.on("message", async message => {
         if (err)
         return m.edit("World Not Found!");
         m.edit('World has been Deleted! Restarting Server...');
-        kill("taskkill /f /im enet.exe")
-        fs.access("enet.exe", (err) => {
+        kill(`taskkill /f /im ${config.exegtps}`)
+        fs.access(config.exegtps, (err) => {
           if (err)
           {
-          return m.edit("enet.exe Not Found! Please put this app into your gtps folder\nIf it still error, change your gtps exe, to your enet.exe")
+          return m.edit(config.exegtps + " Not Found! Please set on config.json")
           }
-            exec("start enet.exe")
+          exec(`start ${config.exegtps}`)
         });
         message.channel.send("Server has been Restarted!")
       });
@@ -200,7 +200,7 @@ client.on("message", async message => {
         fs.access(config.exegtps, (err) => {
           if (err)
           {
-          return m.edit(`${config.exegtps} Not Found! Please set on config.json`)
+          return m.edit(config.exegtps + " Not Found! Please set on config.json")
           }
           exec(`start ${config.exegtps}`)
         });
