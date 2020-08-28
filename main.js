@@ -32,12 +32,13 @@ client.on("message", async message => {
     if(!message.member.roles.cache.some(r=>[config.role].includes(r.name)) )
       return message.reply("Sorry, you don't have permissions to use this!");
       const m = await message.channel.send("Please Wait...");
+      console.log(config.exegtps)
         fs.access(config.exegtps, (err) => {
           if (err)
           {
           return m.edit(config.exegtps + " Not Found! Please set on config.json")
           }
-            exec(`start ${config.exegtps}`)
+            exec(`start "${config.exegtps}"`)
           m.edit("Server is UP")
         });
    }
