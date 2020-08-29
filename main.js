@@ -32,22 +32,21 @@ client.on("message", async message => {
     if(!message.member.roles.cache.some(r=>[config.role].includes(r.name)) )
       return message.reply("Sorry, you don't have permissions to use this!");
       const m = await message.channel.send("Please Wait...");
-      console.log(config.exegtps)
         fs.access(config.exegtps, (err) => {
           if (err)
           {
           return m.edit(config.exegtps + " Not Found! Please set on config.json")
           }
             exec(`start "${config.exegtps}"`)
-          m.edit("Server is UP")
+          return m.edit("Server is UP")
         });
    }
 
   if(command === "stop") {
     if(!message.member.roles.cache.some(r=>[config.role].includes(r.name)) )
       return message.reply("Sorry, you don't have permissions to use this!");
-      kill(`taskkill /f /im ${config.exegtps}`)
-      message.channel.send("Server Has Been Stopped!");
+      kill(`taskkill /f /im "${config.exegtps}"`)
+    return message.channel.send("Server Has Been Stopped!");
   }
 
   if(command === "count") {
@@ -64,7 +63,7 @@ client.on("message", async message => {
       }
       const f1 = files.length;
       const f2 = files1.length;
-      m.edit("Player Count = " + f1 + "\nWorlds Count = " + f2);
+    return m.edit("Player Count = " + f1 + "\nWorlds Count = " + f2);
       })});;
   }
   if (command === "maintenance")
