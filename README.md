@@ -41,3 +41,5 @@ With this application, you can control your own private server, using Discord Bo
 - Added give gems = Current gems + new gems
 - Added give level = Current Level + New Level
 - Added give role
+## Version 7.0
+- Added show gems
