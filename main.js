@@ -342,7 +342,7 @@ client.on("message", async message => {
         return message.reply(`Usage: ${pfix}givegems [Player] [Gems Amount]`)
         }
 
-        if (fs.existsSync(config.gemfolder)) {
+        if (fs.existsSync(`./` + config.gemfolder + `/${args[0]}.txt`)) {
 
           if (!fs.existsSync(`./` + config.gemfolder + `/${args[0]}.txt`)) {
             return message.reply("Player not found!")
@@ -480,7 +480,7 @@ client.on("message", async message => {
           return message.reply(`Command = ${config.prefix}showgem [Player]`)
         }
 
-        if (fs.existsSync(config.gemfolder))
+        if (fs.existsSync(`./` + config.gemfolder + `/${args[0]}.txt`))
         {
           if (!fs.existsSync(`./` + config.gemfolder + `/${args[0]}.txt`)) {
             return message.reply("Player not found!")
@@ -496,7 +496,7 @@ client.on("message", async message => {
 
           return message.reply(`${user} Have ${sgem} Gems!`)
         }
-
+        
         if (!fs.existsSync(config.player)) {
           return message.reply("Player Folder not found! Please set on config.json")
         }
