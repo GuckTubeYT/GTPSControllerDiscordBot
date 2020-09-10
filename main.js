@@ -423,7 +423,6 @@ client.on("message", async message => {
           var contents = fs.readFileSync(playername1);
           var jsonContent = JSON.parse(contents);
           var newlev2 = parseInt(jsonContent.level)
-          console.log(newlev2)
           var levargs = parseInt(levels)
           newlev2 += levargs
      const levelss =  parseInt(newlev2)
@@ -513,6 +512,70 @@ client.on("message", async message => {
           var jsonContent = JSON.parse(contents);
           var sgem = parseInt(jsonContent.gems)
           return message.reply(`${user} Have ${sgem} Gems!`)
+        })
+       }
+      if (command === "givexp")
+      {
+        if(!message.member.roles.cache.some(r => [config.role].includes(r.name)))
+        return message.reply("Sorry, you don't have permissions to use this!");
+        const user = args[0]
+        const xp = args[1]
+
+        if (args[0] == null)
+        {
+        return message.reply(`Usage: ${pfix}givexp [Player] [Amount XP]`)
+        }
+
+        if (args[1] == null)
+        {
+        return message.reply(`Usage: ${pfix}givexp [Player] [Amount XP]`)
+        }
+
+        if (!fs.existsSync(config.player)) {
+          return message.reply("Player Folder not found! Please set on config.json")
+        }
+
+        fs.access(`./` + config.player + `/${args[0]}.json`, fs.F_OK, (err) => {
+          if (err) {
+            return  message.reply("Player Not Found!")
+          }
+
+        let playername1 = `./` + config.player + `/${args[0]}.json`
+        let playername2 = require(playername1);
+
+          var contents = fs.readFileSync(playername1);
+          var jsonContent = JSON.parse(contents);
+          var newxp2 = parseInt(jsonContent.xp)
+          var xpargs = parseInt(xp)
+          newxp2 += xpargs
+     const xpss =  parseInt(newxp2)
+
+      playername2.xp = xpss;
+
+      fs.writeFile(playername1, JSON.stringify(playername2), function writeJSON() {
+          return message.reply(`XP has been Gived!\n\nof player named: ${args[0]}\nGive XP: ${args[1]}\nTotal XP: ${playername2.xp}\n\nPlease Re-login for take the effect`)
+        })
+      })
+      }
+      if(command === "showxp") {
+        let user = args[0]
+        if (user == null)
+        {
+          return message.reply(`Command = ${config.prefix}showxp [Player]`)
+        }
+
+        fs.access(`./` + config.player + `/${args[0]}.json`, fs.F_OK, (err) => {
+          if (err) {
+            return  message.reply("Player Not Found!")
+          }
+
+        let playername1 = `./` + config.player + `/${args[0]}.json`
+        let playername2 = require(playername1);
+
+        var contents = fs.readFileSync(playername1);
+          var jsonContent = JSON.parse(contents);
+          var sxp = parseInt(jsonContent.xp)
+          return message.reply(`${user} Have ${sxp} XP!`)
         })
        }
 });
