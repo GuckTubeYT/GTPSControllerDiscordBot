@@ -342,6 +342,26 @@ client.on("message", async message => {
         return message.reply(`Usage: ${pfix}givegems [Player] [Gems Amount]`)
         }
 
+        if (fs.existsSync(config.gemfolder)) {
+
+          if (!fs.existsSync(`./` + config.gemfolder + `/${args[0]}.txt`)) {
+            return message.reply("Player not found!")
+          }
+
+          let gemdb2 = `./` + config.gemfolder + `/${args[0]}.txt`
+
+          var contents1 = fs.readFileSync(gemdb2);
+          var newgem3 = parseInt(contents1)
+          var gemargs2 = parseInt(gems)
+          newgem3 += gemargs2
+          const gemssdb =  parseInt(newgem3)
+          fs.writeFile(gemdb2, gemssdb, function() {
+            const rgemdb = fs.readFileSync(gemdb2)
+            return message.reply(`Gems has been Gived!\n\nof player named: ${args[0]}\nGems Amount: ${args[1]}\nTotal Gems: ${rgemdb}\n\nPlease Re-login for take the effect`)
+          })
+          return
+        }
+
         if (!fs.existsSync(config.player)) {
           return message.reply("Player Folder not found! Please set on config.json")
         }
@@ -353,12 +373,6 @@ client.on("message", async message => {
 
         let playername1 = `./` + config.player + `/${args[0]}.json`
         let playername2 = require(playername1);
-        
-        
-  
-          if (!fs.existsSync(config.player + "\\" + user + ".json")) {
-        return  message.reply("Player Not Found!")
-      }
         
           var contents = fs.readFileSync(playername1);
           var jsonContent = JSON.parse(contents);
@@ -466,6 +480,23 @@ client.on("message", async message => {
           return message.reply(`Command = ${config.prefix}showgem [Player]`)
         }
 
+        if (fs.existsSync(config.gemfolder))
+        {
+          if (!fs.existsSync(`./` + config.gemfolder + `/${args[0]}.txt`)) {
+            return message.reply("Player not found!")
+          }
+
+          let gemdb1 = `./` + config.gemfolder + `/${args[0]}.txt`
+
+          if (!fs.existsSync(gemdb1)) {
+            return message.reply("Player not found!")
+          }
+
+          var contents = fs.readFileSync(gemdb1);
+
+          return message.reply(`${user} Have ${sgem} Gems!`)
+        }
+
         if (!fs.existsSync(config.player)) {
           return message.reply("Player Folder not found! Please set on config.json")
         }
@@ -484,7 +515,6 @@ client.on("message", async message => {
           return message.reply(`${user} Have ${sgem} Gems!`)
         })
        }
-      
 });
 
 client.login(config.token);
