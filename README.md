@@ -44,3 +44,4 @@ With this application, you can control your own private server, using Discord Bo
 ## Version 7.0
 - Added show gems
 - Support gemdb folder
+- Added give xp and show xp
