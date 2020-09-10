@@ -492,7 +492,7 @@ client.on("message", async message => {
             return message.reply("Player not found!")
           }
 
-          var contents = fs.readFileSync(gemdb1);
+          var sgem = fs.readFileSync(gemdb1);
 
           return message.reply(`${user} Have ${sgem} Gems!`)
         }
