@@ -27,7 +27,7 @@ client.on("message", async message => {
   let pfix = config.prefix
   const pf = `${pfix}`
   if(command === "help") {
-    message.channel.send("```" + pf + "start (Start the server) (Owner Only)\n" + pf + "stop (Stop the server) (Owner Only)\n" + pf + "count (Count The Players and Worlds)\n" + pf + "maintenance [on/off] (Maintenance Switch) (Owner Only)\n" + pf + "wdelete [World] (Delete World) (Owner Only)\n" + pf + "pdelete [Player] (Delete Player) (Owner Only)\n" + pf + "roll[all, player, world] (Rollback world, player, all) (Owner Only)\n" + pf + "forgotpass [Player] [New Password] (Changing Password) (Owner Only)\n" + pf + "givegems [Player] [Gems Amount] (Giving Gems) (Owner Only)\n" + pf + "givelevel [Player] [level] (Giving level) (Owner Only)\n" + pf + "giverole [Player] [Role Number] (Give Role) (Owner Only)\n" + pf + "showgem [Player] (Showing gems Player)\n" + pf + "givexp [Player] [Gems Amount] (Giving XP) (Owner Only)\n" + pf + "showxp [Player] (Showing XP)```");
+    message.channel.send("```" + pf + "start (Start the server) (Owner Only)\n" + pf + "stop (Stop the server) (Owner Only)\n" + pf + "count (Count The Players and Worlds)\n" + pf + "maintenance [on/off] (Maintenance Switch) (Owner Only)\n" + pf + "wdelete [World] (Delete World) (Owner Only)\n" + pf + "pdelete [Player] (Delete Player) (Owner Only)\n" + pf + "roll[all, player, world] (Rollback world, player, all) (Owner Only)\n" + pf + "forgotpass [Player] [New Password] (Changing Password) (Owner Only)\n" + pf + "givegems [Player] [Gems Amount] (Giving Gems) (Owner Only)\n" + pf + "givelevel [Player] [level] (Giving level) (Owner Only)\n" + pf + "giverole [Player] [Role Number] (Give Role) (Owner Only)\n" + pf + "showgem [Player] (Showing gems Player)\n" + pf + "givexp [Player] [Gems Amount] (Giving XP) (Owner Only)\n" + pf + "showxp [Player] (Showing XP)\n" + pf + "editmaintenance [Text Maintenance] (Edit text maintenance) (Owner Only)```");
   }
 
   if(command === "start") {
@@ -514,7 +514,50 @@ client.on("message", async message => {
           return message.reply(`${user} Have ${sgem} Gems!`)
         })
        }
-      if(command === "showlevel") {
+      if (command === "givexp")
+      {
+        if(!message.member.roles.cache.some(r => [config.role].includes(r.name)))
+        return message.reply("Sorry, you don't have permissions to use this!");
+        const user = args[0]
+        const xp = args[1]
+
+        if (args[0] == null)
+        {
+        return message.reply(`Usage: ${pfix}givexp [Player] [Amount XP]`)
+        }
+
+        if (args[1] == null)
+        {
+        return message.reply(`Usage: ${pfix}givexp [Player] [Amount XP]`)
+        }
+
+        if (!fs.existsSync(config.player)) {
+          return message.reply("Player Folder not found! Please set on config.json")
+        }
+
+        fs.access(`./` + config.player + `/${args[0]}.json`, fs.F_OK, (err) => {
+          if (err) {
+            return  message.reply("Player Not Found!")
+          }
+
+        let playername1 = `./` + config.player + `/${args[0]}.json`
+        let playername2 = require(playername1);
+
+          var contents = fs.readFileSync(playername1);
+          var jsonContent = JSON.parse(contents);
+          var newxp2 = parseInt(jsonContent.xp)
+          var xpargs = parseInt(xp)
+          newxp2 += xpargs
+     const xpss =  parseInt(newxp2)
+
+      playername2.xp = xpss;
+
+      fs.writeFile(playername1, JSON.stringify(playername2), function writeJSON() {
+          return message.reply(`XP has been Gived!\n\nof player named: ${args[0]}\nGive XP: ${args[1]}\nTotal XP: ${playername2.xp}\n\nPlease Re-login for take the effect`)
+        })
+      })
+      }
+      if(command === "showxp") {
         let user = args[0]
         if (user == null)
         {
@@ -535,6 +578,63 @@ client.on("message", async message => {
           return message.reply(`${user} Have ${sxp} XP!`)
         })
        }
+       if (command === "editmaintenance")
+       {
+        if(!message.member.roles.cache.some(r => [config.role].includes(r.name)))
+        return message.reply("Sorry, you don't have permissions to use this!");
+
+        if (args[0] == null)
+        {
+        return message.reply(`Command = ${config.prefix}editmaintenance [Text Maintenance]`)
+        }
+
+        if (!fs.existsSync(config.sdata))
+        {
+          return message.reply("Where's the server_data.php? Please set the config.json")
+        }
+        var sdataphp = fs.readFileSync("server_data.php")
+
+var result = sdataphp.includes("maint")
+var result1 = sdataphp.includes("#maint")
+if (result == true && result1 == true)
+{
+    let file = fs.readFileSync("server_data.php", "utf8");
+let arr = file.split(/\r?\n/);
+arr.forEach((maint1, idx)=> {
+    if(maint1.includes("#maint|")){
+    const substr = maint1.substring(7)
+    fs.readFile("server_data.php", 'utf8', function (err, data) {
+        var result = data.replace(substr, args[0]);
+      
+        fs.writeFile("server_data.php", result, 'utf8', function (err) {
+           if (err) return console.log(err);
+           return message.reply("Maintenance has been changed!")
+        });
+      });
+    }
+});
+
+}
+if (result == true && result1 == false)
+{
+    let file = fs.readFileSync("server_data.php", "utf8");
+    let arr = file.split(/\r?\n/);
+    arr.forEach((maint1, idx)=> {
+    if(maint1.includes("maint|")){
+    const substr = maint1.substring(6)
+    fs.readFile("server_data.php", 'utf8', function (err, data) {
+        var result = data.replace(substr, args[0]);
+      
+        fs.writeFile("server_data.php", result, 'utf8', function (err) {
+           if (err) return console.log(err);
+           return message.reply("Maintenance has been changed!")
+        });
+      });
+    }
+});
+}
+}
+
 });
 
 client.login(config.token);
