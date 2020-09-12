@@ -45,3 +45,4 @@ With this application, you can control your own private server, using Discord Bo
 - Added show gems
 - Support gemdb folder
 - Added showxp
+- Added editmaintenance
