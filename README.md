@@ -1,5 +1,5 @@
 # GTPSControllerDiscordBot
-https://img.shields.io/github/release-date/GuckTubeYT/GTPSControllerDiscordBot?style=for-the-badge
+![GitHub Release Date](https://img.shields.io/github/release-date/GuckTubeYT/GTPSControllerDiscordBot)
 <br /> Created By = GuckTubeYT
 <br /> Helped by = Clayne and JadlionHD, Odading Mang Oleng
 <br />
