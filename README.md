@@ -1,5 +1,4 @@
-# GTPSControllerDiscordBot
-![GitHub](https://img.shields.io/github/license/GuckTubeYT/GTPSControllerDiscordBot?style=flat-square)
+# GTPSControllerDiscordBot ![GitHub](https://img.shields.io/github/license/GuckTubeYT/GTPSControllerDiscordBot?style=flat-square)
 ![Website](https://img.shields.io/website?down_color=red&down_message=Suspended&style=flat-square&up_color=green&up_message=Uptime&url=http%3A%2F%2Fgrowtopia1.com)
 <br>
 ![Helper](https://img.shields.io/badge/Helper-JadlionHD%2C%20Clayne%2C%20Fikasm-blueviolet)
