@@ -4,6 +4,12 @@
 * Credit Discord Bot example Code: eslachance
 */
 
+/*
+* GNU License (C) 2020 GuckTubeYT Project
+* This Licensed With Public. They All Leaked With Gotten TakeDown DMCA By Github.
+* We Do Not Responsible With They All TakeDown DMCA.
+*/
+
 const Discord = require("discord.js");
 const { exec } = require("child_process");
 const kill = require("child_process").exec
