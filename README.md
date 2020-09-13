@@ -47,3 +47,4 @@ With this application, you can control your own private server, using Discord Bo
 - Added showxp
 - Added editmaintenance
 - Adding logs (Showing Logs)
+- Adding givewl
