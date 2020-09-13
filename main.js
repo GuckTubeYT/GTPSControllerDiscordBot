@@ -672,6 +672,14 @@ const embed = Discord.MessageEmbed()
 message.channel.send(embed)
 client.setActivity(`${args[0]`)
 }
+if (command === "guildcount")
+const guild = `./`+ config.guild +`}
+fs.readdirSync(guild).forEach(file => {
+  return message.channel.send(`**Guild's Count : _${file}_**`)
+});
+else {
+return message.channel.send(`**Invalid Folder. Contact Support When You Input it's Valid.**`)
+}
   if (command === "givewl")
   {
     if(!message.member.roles.cache.some(r=>[config.role].includes(r.name)) )
