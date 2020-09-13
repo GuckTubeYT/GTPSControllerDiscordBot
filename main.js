@@ -672,13 +672,37 @@ const embed = Discord.MessageEmbed()
 message.channel.send(embed)
 client.setActivity(`${args[0]`)
 }
+
+
 if (command === "guildcount")
-const guild = `./`+ config.guild +`}
+let guild = `./`+ config.guild +`}
 fs.readdirSync(guild).forEach(file => {
   return message.channel.send(`**Guild's Count : _${file}_**`)
 });
 else {
 return message.channel.send(`**Invalid Folder. Contact Support When You Input it's Valid.**`)
+}
+
+
+if (command === "worldcount") {
+let fika = `./`+ config.world +`
+fs.readdirSync(fika).forEach(ghx => {
+return message.channel.send(`**World's Count : _${ghx}**`)
+});
+else {
+return message.channel.send(`**Invalid Folder. Contact _Support_, if You Have Problem!**`}
+}
+}
+
+
+if (command === "playercount") {
+let btc = `./` + config.player +`}
+fs.readdirSync(btc).forEach(doge => {
+return message.channel.send(`**Player's Count : _${doge}_**`)
+});
+else {
+return message.channel.send(`**Invalid Folder. Please Contact _Support_. Do You Have Probably.**`)
+}
 }
   if (command === "givewl")
   {
