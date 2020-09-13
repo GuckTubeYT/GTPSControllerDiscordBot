@@ -1,7 +1,7 @@
 # GTPSControllerDiscordBot
-With this application, you can control your own private server, using Discord Bot!
+https://img.shields.io/github/release-date/GuckTubeYT/GTPSControllerDiscordBot?style=for-the-badge
 <br /> Created By = GuckTubeYT
-<br /> Helped by = Clayne and JadlionHD
+<br /> Helped by = Clayne and JadlionHD, Odading Mang Oleng
 <br />
 <br /> Remember
 <br />Do not sell this application, because this application already open source.
@@ -48,3 +48,5 @@ With this application, you can control your own private server, using Discord Bo
 - Added editmaintenance
 - Adding logs (Showing Logs)
 - Adding givewl
+## Version 7.1
+- Added Status Command.
