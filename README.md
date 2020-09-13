@@ -46,3 +46,4 @@ With this application, you can control your own private server, using Discord Bo
 - Support gemdb folder
 - Added showxp
 - Added editmaintenance
+- Adding logs (Showing Logs)
