@@ -1,14 +1,15 @@
 # GTPSControllerDiscordBot
-![GitHub Release Date](https://img.shields.io/github/release-date/GuckTubeYT/GTPSControllerDiscordBot)
+![GitHub](https://img.shields.io/github/license/GuckTubeYT/GTPSControllerDiscordBot?style=flat-square)
 <br /> Created By = GuckTubeYT
 <br /> Helped by = Clayne and JadlionHD, Odading Mang Oleng
 <br />
 <br /> Remember
 <br />Do not sell this application, because this application already open source.
 <br />Do not change Creator name, to your own name.
-<br />If you see someone who sell the application or change creator name, Please DM GuckTubeYT#3123, Clayne#1000, or JadlionHD#0987
+<br />If you see someone who sell the application or change creator name, Please DM GuckTubeYT#3123, Clayne#1000, JadlionHD#0987, or iFika#6127
 # How to Use
-1. Download NodeJS = https://nodejs.org/en/download/
+1. Use VPS/Server Realtime For Issue Performance.
+2. Download NodeJS (Stable) = https://nodejs.org/en/download/
 2. Put This app, to your GTPS Folder
 3. Setting on config.json
 4. Press install.bat
