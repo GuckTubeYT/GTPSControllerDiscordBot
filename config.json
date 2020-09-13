@@ -3,6 +3,7 @@
     "prefix" : "gt!",
     "exegtps" : "server.exe",
     "world" : "worlds",
+    "guild" : "guilds",
     "player" : "players",
     "role" : "Server Creator",
     "sdata" : "C:\\xampp\\htdocs\\growtopia\\server_data.php",
