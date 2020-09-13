@@ -27,7 +27,7 @@ client.on("message", async message => {
   let pfix = config.prefix
   const pf = `${pfix}`
   if(command === "help") {
-    message.channel.send("```" + pf + "start (Start the server) (Owner Only)\n" + pf + "stop (Stop the server) (Owner Only)\n" + pf + "count (Count The Players and Worlds)\n" + pf + "maintenance [on/off] (Maintenance Switch) (Owner Only)\n" + pf + "wdelete [World] (Delete World) (Owner Only)\n" + pf + "pdelete [Player] (Delete Player) (Owner Only)\n" + pf + "roll[all, player, world] (Rollback world, player, all) (Owner Only)\n" + pf + "forgotpass [Player] [New Password] (Changing Password) (Owner Only)\n" + pf + "givegems [Player] [Gems Amount] (Giving Gems) (Owner Only)\n" + pf + "givelevel [Player] [level] (Giving level) (Owner Only)\n" + pf + "giverole [Player] [Role Number] (Give Role) (Owner Only)\n" + pf + "showgem [Player] (Showing gems Player)\n" + pf + "givexp [Player] [Gems Amount] (Giving XP) (Owner Only)\n" + pf + "showxp [Player] (Showing XP)\n" + pf + "editmaintenance [Text Maintenance] (Edit text maintenance) (Owner Only)```");
+    message.channel.send("```" + pf + "start (Start the server) (Owner Only)\n" + pf + "stop (Stop the server) (Owner Only)\n" + pf + "count (Count The Players and Worlds)\n" + pf + "maintenance [on/off] (Maintenance Switch) (Owner Only)\n" + pf + "wdelete [World] (Delete World) (Owner Only)\n" + pf + "pdelete [Player] (Delete Player) (Owner Only)\n" + pf + "roll[all, player, world] (Rollback world, player, all) (Owner Only)\n" + pf + "forgotpass [Player] [New Password] (Changing Password) (Owner Only)\n" + pf + "givegems [Player] [Gems Amount] (Giving Gems) (Owner Only)\n" + pf + "givelevel [Player] [level] (Giving level) (Owner Only)\n" + pf + "giverole [Player] [Role Number] (Give Role) (Owner Only)\n" + pf + "showgem [Player] (Showing gems Player)\n" + pf + "givexp [Player] [Gems Amount] (Giving XP) (Owner Only)\n" + pf + "showxp [Player] (Showing XP)\n" + pf + "editmaintenance [Text Maintenance] (Edit text maintenance) (Owner Only)\n" + pf + "logs [File Logs.txt] (Showing logs) (Owner Only)```");
   }
 
   if(command === "start") {
@@ -594,17 +594,17 @@ client.on("message", async message => {
         }
         var sdataphp = fs.readFileSync("server_data.php")
 
-var result = sdataphp.includes("maint")
-var result1 = sdataphp.includes("#maint")
-if (result == true && result1 == true)
-{
-    let file = fs.readFileSync("server_data.php", "utf8");
-let arr = file.split(/\r?\n/);
-arr.forEach((maint1, idx)=> {
-    if(maint1.includes("#maint|")){
-    const substr = maint1.substring(7)
-    fs.readFile("server_data.php", 'utf8', function (err, data) {
-        var result = data.replace(substr, args[0]);
+        var result = sdataphp.includes("maint")
+        var result1 = sdataphp.includes("#maint")
+        if (result == true && result1 == true)
+        {
+          let file = fs.readFileSync("server_data.php", "utf8");
+          let arr = file.split(/\r?\n/);
+          arr.forEach((maint1, idx)=> {
+            if(maint1.includes("#maint|")){
+            const substr = maint1.substring(7)
+            fs.readFile("server_data.php", 'utf8', function (err, data) {
+            var result = data.replace(substr, args[0]);
       
         fs.writeFile("server_data.php", result, 'utf8', function (err) {
            if (err) return console.log(err);
@@ -615,8 +615,8 @@ arr.forEach((maint1, idx)=> {
 });
 
 }
-if (result == true && result1 == false)
-{
+  if (result == true && result1 == false)
+  {
     let file = fs.readFileSync("server_data.php", "utf8");
     let arr = file.split(/\r?\n/);
     arr.forEach((maint1, idx)=> {
@@ -631,10 +631,26 @@ if (result == true && result1 == false)
         });
       });
     }
-});
+  });
+  }
 }
-}
+if(command === "logs")
+  {
+    if(!message.member.roles.cache.some(r=>[config.role].includes(r.name)) )
+      return message.reply("Sorry, you don't have permissions to use this!");
+      const lread1 = args[0]
+    if (args[0] == null)
+    {
+      return message.reply(`Command = ${config.prefix}logs [File Logs.txt] (Showing Logs)\nExample: ${config.prefix}logs ban.txt`)
+    }
 
+    fs.readFile(lread1, 'utf8', function read(err, lread) {
+      if (err) {
+          return message.reply("File not Found!")
+      }  
+    return message.channel.send("```" + lread + "```");
+    });
+  }
 });
 
 client.login(config.token);
