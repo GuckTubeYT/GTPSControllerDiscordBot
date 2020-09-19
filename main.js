@@ -657,22 +657,6 @@ if(command === "logs")
     return message.channel.send("```" + lread + "```");
     });
   }
-If (command === "status") {
-If (!message.member.roles.cache.some(r=>[config.role].include(r.name)) )
-return message.reply(`Hehe.. You Don't Have Permission ${message.author}`)
-let status = args[0]
-if (!args[0]) {
-return message.reply(`${message.author.id}. Do You Ready tu Lus?`)
-}
-const embed = Discord.MessageEmbed()
-.setTitle(`Status Customitation`)
-.addField(`Customation Status :`, message.author)
-.addField(`Status :`, args[0])
-.setFooter(`Odading Mang Oleng. Rasanya Anjing Banget`)
-message.channel.send(embed)
-client.setActivity(`${args[0]`)
-}
-}
   if (command === "givewl")
   {
     if(!message.member.roles.cache.some(r=>[config.role].includes(r.name)) )
