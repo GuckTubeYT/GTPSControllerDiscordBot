@@ -51,7 +51,6 @@
 - Added editmaintenance
 - Adding logs (Showing Logs)
 - Adding givewl
-## Version 8.0
+## Version 7.1
 - Added Status Command.
-- Added Counter (Player, Worlds, Guild)
 - Update Batch File To Nice Design
