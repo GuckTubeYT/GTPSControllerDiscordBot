@@ -657,6 +657,26 @@ if(command === "logs")
     return message.channel.send("```" + lread + "```");
     });
   }
+  if (command === "ddos") // The Method Are HTTP! MultiDos Will Ready Soon!
+  {
+    // If You Found a Script BOOTER/DOS. You Contact a Fika For Giving A Script
+    if(!message.author.id === "123123123")
+    {
+      return message.reply("```No! This Need Premium Users. Contact a Gucktube For Somehelp!```")
+    }
+    //Main
+    if(!args[0])
+    {
+      return message.reply(`**Input a Domain. Please?**`)
+    }
+    message.channel.send(`**DDoS Was Injected To ${args[0]}**`)
+    .then((msg) => {
+    setTimeout(function() {
+    msg.edit('```DDOS Stopped In 5 Seconds.```');
+  }, 5000)
+      
+    });  
+  }
   if (command === "givewl")
   {
     if(!message.member.roles.cache.some(r=>[config.role].includes(r.name)) )
