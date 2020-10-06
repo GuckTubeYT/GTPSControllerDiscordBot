@@ -54,5 +54,8 @@
 ## Version 7.1
 - Added Status Command.
 - Update Batch File To Nice Design
-##Version 7.2B
+## Version 7.2B
 - Added DDOS Feature [BETA]
+## Version 7.2.1B
+- Added Translate Command
+- New HELP UI.
