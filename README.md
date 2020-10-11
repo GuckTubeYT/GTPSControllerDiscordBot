@@ -8,7 +8,7 @@
 <br /> Remember
 <br />Do not sell this application, because this application already open source.
 <br />Do not change Creator name, to your own name.
-<br />If you see someone who sell the application or change creator name, Please DM GuckTubeYT#3123, Clayne#1000, JadlionHD#0987, or iFika#6127
+<br />If you see someone who sell the application or change creator name, Please DM GuckTubeYT#3123 or iFika#6127
 # How to Use
 1. Use VPS/Server Realtime For Issue Performance.
 2. Download NodeJS (Stable) = https://nodejs.org/en/download/ ![Node](https://img.shields.io/badge/NODEJS-Stable-orange)
@@ -54,8 +54,3 @@
 ## Version 7.1
 - Added Status Command.
 - Update Batch File To Nice Design
-## Version 7.2B
-- Added DDOS Feature [BETA]
-## Version 7.2.1B
-- Added Translate Command
-- New HELP UI.
