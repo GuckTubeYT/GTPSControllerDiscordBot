@@ -33,11 +33,7 @@ client.on("message", async message => {
   let pfix = config.prefix
   const pf = `${pfix}`
   if(command === "help") {
-  let embed = new discord.messageEmbed()
-  .setTitle("**Help Command**")
-  .addField("**Controller Command**", "```Start Stop Maintenance Rollall Rollworld Rollplayer Givegems Givewl Givelevel Giverole Showgem Showxp Forgotpass ddos```")
-  .addField("**Public Command**", "```translate```")
-  message.channel.send(embed)
+    message.channel.send("```" + pf + "start (Start the server) (Owner Only)\n" + pf + "stop (Stop the server) (Owner Only)\n" + pf + "count (Count The Players and Worlds)\n" + pf + "maintenance [on/off] (Maintenance Switch) (Owner Only)\n" + pf + "wdelete [World] (Delete World) (Owner Only)\n" + pf + "pdelete [Player] (Delete Player) (Owner Only)\n" + pf + "roll[all, player, world] (Rollback world, player, all) (Owner Only)\n" + pf + "forgotpass [Player] [New Password] (Changing Password) (Owner Only)\n" + pf + "givegems [Player] [Gems Amount] (Giving Gems) (Owner Only)\n" + pf + "givelevel [Player] [level] (Giving level) (Owner Only)\n" + pf + "giverole [Player] [Role Number] (Give Role) (Owner Only)\n" + pf + "showgem [Player] (Showing gems Player)\n" + pf + "givexp [Player] [Gems Amount] (Giving XP) (Owner Only)\n" + pf + "showxp [Player] (Showing XP)\n" + pf + "editmaintenance [Text Maintenance] (Edit text maintenance) (Owner Only)\n" + pf + "logs [File Logs.txt] (Showing logs) (Owner Only)\n" + pf + "givewl [Player] [Amount WL] (Giving WL) (Owner Only)```");
   }
 
   if(command === "start") {
@@ -660,39 +656,6 @@ if(command === "logs")
       }  
     return message.channel.send("```" + lread + "```");
     });
-  }
-  if (command === "translate")
-    if (!args[0])
-    {
-    return message.reply("**Hmm. Where Text?**")
-    }
-  if (!args[1])
-  {
-  return message.reply(`**<@${message.author.id}>, What Countries To Translate. If You Don't Know Short Countries. Click Below\nhttps://id.wikipedia.org/wiki/ISO_3166-1**`)
-  }
-  // Main Command.
-  const text = await translate(`${args[0]}`, `${args[1]}`)
-  message.channel.send(`**Translated To ${args[1]} :  ${text}`)
-  
-  if (command === "ddos") // The Method Are HTTP! MultiDos Will Ready Soon!
-  {
-    // If You Found a Script BOOTER/DOS. You Contact a Fika For Giving A Script
-    if(!message.author.id === "123123123")
-    {
-      return message.reply("```No! This Need Premium Users. Contact a Gucktube For Somehelp!```")
-    }
-    //Main
-    if(!args[0])
-    {
-      return message.reply(`**Input a Domain. Please?**`)
-    }
-    message.channel.send(`**DDoS Was Injected To ${args[0]}**`)
-    .then((msg) => {
-    setTimeout(function() {
-    msg.edit('```DDOS Stopped In 5 Seconds.```');
-  }, 5000)
-      
-    });  
   }
   if (command === "givewl")
   {
