@@ -52,5 +52,8 @@
 - Adding logs (Showing Logs)
 - Adding givewl
 ## Version 7.1
-- Added Status Command.
 - Update Batch File To Nice Design
+## Version 8.0
+- Added Show level
+- Added status
+- Updated count command (Added size player and worlds)
