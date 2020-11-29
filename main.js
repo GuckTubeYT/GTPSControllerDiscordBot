@@ -1,7 +1,8 @@
 /*
 * Coded by: GuckTube YT
-* Helped by: Clayne and Jadlion HD, Fikasm
+* Helped by: Clayne, JadlionHD and Fika
 * Credit Discord Bot example Code: eslachance
+* Dont forget to Credit me
 */
 
 /*
@@ -20,6 +21,65 @@ const path = require("path");
 const bcrypt = require("bcrypt");
 const { allowedNodeEnvironmentFlags } = require("process");
 
+const getAllFiles = function(dirPath, arrayOfFiles) {
+  files = fs.readdirSync(dirPath)
+
+  arrayOfFiles = arrayOfFiles || []
+
+  files.forEach(function(file) {
+    if (fs.statSync(dirPath + "/" + file).isDirectory()) {
+      arrayOfFiles = getAllFiles(dirPath + "/" + file, arrayOfFiles)
+    } else {
+      arrayOfFiles.push(path.join(__dirname, dirPath, file))
+    }
+  })
+
+  return arrayOfFiles
+}
+
+const convertBytes = function(bytes) {
+  const sizes = ["Bytes", "KB", "MB", "GB", "TB"]
+
+  if (bytes == 0) {
+    return "n/a"
+  }
+
+  const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)))
+
+  if (i == 0) {
+    return bytes + " " + sizes[i]
+  }
+
+  return (bytes / Math.pow(1024, i)).toFixed(1) + " " + sizes[i]
+}
+
+const getTotalSize = function(directoryPath) {
+  const arrayOfFiles = getAllFiles(directoryPath)
+
+  let totalSize = 0
+
+  arrayOfFiles.forEach(function(filePath) {
+    totalSize += fs.statSync(filePath).size
+  })
+
+  return convertBytes(totalSize)
+}
+
+const isRunning = (query, cb) => {
+  let platform = process.platform;
+  let cmd = '';
+  switch (platform) {
+      case 'win32' : cmd = `tasklist`; break;
+      case 'darwin' : cmd = `ps -ax | grep ${query}`; break;
+      case 'linux' : cmd = `ps -A`; break;
+      default: break;
+  }
+  kill(cmd, (err, stdout, stderr) => {
+      cb(stdout.toLowerCase().indexOf(query.toLowerCase()) > -1);
+  });
+}
+
+
 client.on("ready", () => {
   console.log(`Bot is Online Now!`);
   client.user.setActivity(`GTPSController By GuckTube YT`);
@@ -33,28 +93,47 @@ client.on("message", async message => {
   let pfix = config.prefix
   const pf = `${pfix}`
   if(command === "help") {
-    message.channel.send("```" + pf + "start (Start the server) (Owner Only)\n" + pf + "stop (Stop the server) (Owner Only)\n" + pf + "count (Count The Players and Worlds)\n" + pf + "maintenance [on/off] (Maintenance Switch) (Owner Only)\n" + pf + "wdelete [World] (Delete World) (Owner Only)\n" + pf + "pdelete [Player] (Delete Player) (Owner Only)\n" + pf + "roll[all, player, world] (Rollback world, player, all) (Owner Only)\n" + pf + "forgotpass [Player] [New Password] (Changing Password) (Owner Only)\n" + pf + "givegems [Player] [Gems Amount] (Giving Gems) (Owner Only)\n" + pf + "givelevel [Player] [level] (Giving level) (Owner Only)\n" + pf + "giverole [Player] [Role Number] (Give Role) (Owner Only)\n" + pf + "showgem [Player] (Showing gems Player)\n" + pf + "givexp [Player] [Gems Amount] (Giving XP) (Owner Only)\n" + pf + "showxp [Player] (Showing XP)\n" + pf + "editmaintenance [Text Maintenance] (Edit text maintenance) (Owner Only)\n" + pf + "logs [File Logs.txt] (Showing logs) (Owner Only)\n" + pf + "givewl [Player] [Amount WL] (Giving WL) (Owner Only)```");
+    if(message.member.roles.cache.some(r=>[config.role].includes(r.name)) )
+      return message.channel.send("```" + pf + "start (Start the server)\n" + pf + "stop (Stop the server)\n" + pf + "count (Count The Players and Worlds and size players and world)\n" + pf + "maintenance [on/off] (Maintenance Switch)\n" + pf + "wdelete [World] (Delete World)\n" + pf + "pdelete [Player] (Delete Player)\n" + pf + "roll[all, player, world] (Rollback world, player, all)\n" + pf + "forgotpass [Player] [New Password] (Changing Password)\n" + pf + "givegems [Player] [Gems Amount] (Giving Gems)\n" + pf + "givelevel [Player] [level] (Giving level)\n" + pf + "giverole [Player] [Role Number] (Give Role)\n" + pf + "showgem [Player] (Showing gems Player)\n" + pf + "givexp [Player] [Gems Amount] (Giving XP)\n" + pf + "showxp [Player] (Showing XP Player)\n" + pf + "editmaintenance [Text Maintenance] (Edit text maintenance)\n" + pf + "logs [File Logs.txt] (Showing logs)\n" + pf + "givewl [Player] [Amount WL] (Giving WL)\n" + pf + "status (Check Status Server)\n" + pf + "showlevel [Player] (Showing Player Level)```");
+    else
+    message.channel.send("```" + pf + "count (Count The Players and Worlds and size players and world)\n" + pf + "showxp [Player] (Showing XP Player)\n" + pf + "showgem [Player] (Showing gems Player)\n" + pf + "status (Check Status Server)\n" + pf + "showlevel [Player] (Showing Player Level)```");
   }
 
   if(command === "start") {
     if(!message.member.roles.cache.some(r=>[config.role].includes(r.name)) )
       return message.reply("Sorry, you don't have permissions to use this!");
-      const m = await message.channel.send("Please Wait...");
         fs.access(config.exegtps, (err) => {
           if (err)
           {
-          return m.edit(config.exegtps + " Not Found! Please set on config.json")
+          return message.channel.send(config.exegtps + " Not Found! Please set on config.json")
           }
             exec(`start "${config.exegtps}"`)
-          return m.edit("Server is UP")
+          return message.channel.send("Server is UP")
         });
-   }
+    }
 
   if(command === "stop") {
     if(!message.member.roles.cache.some(r=>[config.role].includes(r.name)) )
       return message.reply("Sorry, you don't have permissions to use this!");
       kill(`taskkill /f /im "${config.exegtps}"`)
     return message.channel.send("Server Has Been Stopped!");
+  }
+
+  if (command === "status")
+  {
+    const m = await message.channel.send("Please wait...")
+    isRunning(config.exegtps, (status) => {
+      if (status == true)
+      {
+        m.edit("The server is UP")
+        return;
+      }
+      else
+      {
+        m.edit("The server is DOWN")
+        return;
+      }
+  })
   }
 
   if(command === "count") {
@@ -71,7 +150,9 @@ client.on("message", async message => {
       }
       const f1 = files.length;
       const f2 = files1.length;
-    return m.edit("Player Count = " + f1 + "\nWorlds Count = " + f2);
+      const sf1 = getTotalSize(config.player)
+      const sf2 = getTotalSize(config.world)
+    return m.edit("Player Count = " + f1 + "\nPlayer Folder Size = " + sf1 + "\nWorlds Count = " + f2 + "\nWorlds Folder Size = " + sf2);
       })});;
   }
   if (command === "maintenance")
@@ -582,6 +663,27 @@ client.on("message", async message => {
           var jsonContent = JSON.parse(contents);
           var sxp = parseInt(jsonContent.xp)
           return message.reply(`${user} Have ${sxp} XP!`)
+        })
+       }
+       if(command === "showlevel") {
+        let user = args[0]
+        if (user == null)
+        {
+          return message.reply(`Command = ${config.prefix}showlevel [Player]`)
+        }
+
+        fs.access(`./` + config.player + `/${args[0]}.json`, fs.F_OK, (err) => {
+          if (err) {
+            return  message.reply("Player Not Found!")
+          }
+
+        let playername1 = `./` + config.player + `/${args[0]}.json`
+        let playername2 = require(playername1);
+
+        var contents = fs.readFileSync(playername1);
+          var jsonContent = JSON.parse(contents);
+          var slevel = parseInt(jsonContent.level)
+          return message.reply(`${user} Level = ${slevel}`)
         })
        }
        if (command === "editmaintenance")
