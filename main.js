@@ -116,7 +116,7 @@ ${pf}givewl [Player] [Amount WL] (Giving WL)
 ${pf}status (Check Status Server)
 ${pf}showlevel [Player] (Showing Player Level)
 \`\`\`
-`)
+`);
     else
       message.channel.send(`
 \`\`\`yaml
