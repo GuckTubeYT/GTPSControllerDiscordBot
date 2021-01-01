@@ -94,9 +94,39 @@ client.on("message", async message => {
   const pf = `${pfix}`
   if(command === "help") {
     if(message.member.roles.cache.some(r=>[config.role].includes(r.name)) )
-      return message.channel.send("```" + pf + "start (Start the server)\n" + pf + "stop (Stop the server)\n" + pf + "count (Count The Players and Worlds and size players and world)\n" + pf + "maintenance [on/off] (Maintenance Switch)\n" + pf + "wdelete [World] (Delete World)\n" + pf + "pdelete [Player] (Delete Player)\n" + pf + "roll[all, player, world] (Rollback world, player, all)\n" + pf + "forgotpass [Player] [New Password] (Changing Password)\n" + pf + "givegems [Player] [Gems Amount] (Giving Gems)\n" + pf + "givelevel [Player] [level] (Giving level)\n" + pf + "giverole [Player] [Role Number] (Give Role)\n" + pf + "showgem [Player] (Showing gems Player)\n" + pf + "givexp [Player] [Gems Amount] (Giving XP)\n" + pf + "showxp [Player] (Showing XP Player)\n" + pf + "editmaintenance [Text Maintenance] (Edit text maintenance)\n" + pf + "logs [File Logs.txt] (Showing logs)\n" + pf + "givewl [Player] [Amount WL] (Giving WL)\n" + pf + "status (Check Status Server)\n" + pf + "showlevel [Player] (Showing Player Level)```");
+      return message.channel.send(`
+\`\`\`yaml
+${pf}start (Start the server)
+${pf}stop (Stop the server)
+${pf}count (Count The Players and Worlds and size players and world)
+${pf}maintenance [on/off] (Maintenance Switch)
+${pf}wdelete [World] (Delete World)
+${pf}pdelete [Player] (Delete Player)
+${pf}roll[all, player, world] (Rollback world, player, all)
+${pf}forgotpass [Player] [New Password] (Changing Password)
+${pf}givegems [Player] [Gems Amount] (Giving Gems)
+${pf}givelevel [Player] [level] (Giving level)
+${pf}giverole [Player] [Role Number] (Give Role)
+${pf}showgem [Player] (Showing gems Player)
+${pf}givexp [Player] [Gems Amount] (Giving XP)
+${pf}showxp [Player] (Showing XP Player)
+${pf}editmaintenance [Text Maintenance] (Edit text maintenance)
+${pf}logs [File Logs.txt] (Showing logs)
+${pf}givewl [Player] [Amount WL] (Giving WL)
+${pf}status (Check Status Server)
+${pf}showlevel [Player] (Showing Player Level)
+\`\`\`
+
     else
-    message.channel.send("```" + pf + "count (Count The Players and Worlds and size players and world)\n" + pf + "showxp [Player] (Showing XP Player)\n" + pf + "showgem [Player] (Showing gems Player)\n" + pf + "status (Check Status Server)\n" + pf + "showlevel [Player] (Showing Player Level)```");
+      message.channel.send(`
+\`\`\`yaml
+ ${pf}count (Count The Players and Worlds and size players and world)
+ ${pf}showxp [Player] (Showing XP Player)
+ ${pf}showgem [Player] (Showing gems Player)
+ ${pf}status (Check Status Server)
+ ${pf}showlevel [Player] (Showing Player Level)
+\`\`\`
+`);
   }
 
   if(command === "start") {
