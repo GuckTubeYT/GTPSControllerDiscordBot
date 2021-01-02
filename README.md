@@ -57,3 +57,5 @@
 - Added Show level
 - Added status
 - Updated count command (Added size player and worlds)
+## Version 8.1
+- Structured help command (Thanks to JadlionHD)
