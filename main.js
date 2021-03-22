@@ -28,19 +28,25 @@ var isHttpOn = false; //check http is on or off
 var maintServer = false; //check server is maintenance or not (For GTPSController Discord Bot HTTP Server)
 
 const httpServer = http.createServer((req, res) => {
-console.log(`http service is start`)
-const GTPSWebhook = new Webhook(config.httpwebhook);
-const GTPSWebhook_avatar = config.httpavatar;
-GTPSWebhook.setUsername(config.httpusername);
-GTPSWebhook.setAvatar(GTPSWebhook_avatar);
+	console.log(`http service is start`)
+    if (config.useWebhook) {
+	    const GTPSWebhook = new Webhook(config.httpwebhook);
+        const GTPSWebhook_avatar = config.httpavatar;
+        GTPSWebhook.setUsername(config.httpusername);
+        GTPSWebhook.setAvatar(GTPSWebhook_avatar);
+    }
 	if (req.url === "/growtopia/server_data.php" && req.method === "POST") {
 		if (maintServer) {
-			GTPSWebhook.send(`maintenance Logs from: ${req.connection.remoteAddress}`)
+			if (config.useWebhook) {
+				GTPSWebhook.send(`maintenance Logs from: ${req.connection.remoteAddress}`)
+			}
 			res.write(`server|${config.ipServer}\nport|${config.portServer}\ntype|1\nmaint|${maintTextt}\n\nbeta_server|${config.betaIpServer}\nbeta_port|${config.betaPortServer}\n\nbeta_type|1\nmeta|${config.metaServer}\nRTENDMARKERBS1001`)
 			return res.end()
 		}
 		else {
-			GTPSWebhook.send(`Login Logs from: ${req.connection.remoteAddress}`)
+			if (config.useWebhook) {
+				GTPSWebhook.send(`Login Logs from: ${req.connection.remoteAddress}`)
+			}
 			res.write(`server|${config.ipServer}\nport|${config.portServer}\ntype|1\n#maint|${maintTextt}\n\nbeta_server|${config.betaIpServer}\nbeta_port|${config.betaPortServer}\n\nbeta_type|1\nmeta|${config.metaServer}\nRTENDMARKERBS1001`)
 			return res.end()
 		}
