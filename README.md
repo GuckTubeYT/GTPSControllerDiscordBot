@@ -63,3 +63,4 @@
 ## Version 9.0
 - Add HTTP Server (Thanks to Galvin)
 - Fix edit maintenance
+- Added HTTP Logs Webhook (Thanks to Galvin)
