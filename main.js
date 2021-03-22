@@ -1,6 +1,6 @@
 /*
 * Coded by: GuckTube YT
-* Helped by: Clayne, JadlionHD and Fika
+* Helped by: Clayne, JadlionHD, Galvin and Fika
 * Credit Discord Bot example Code: eslachance
 * Dont forget to Credit me
 */
@@ -19,7 +19,29 @@ const client = new Discord.Client();
 const config = require("./config.json");
 const path = require("path");
 const bcrypt = require("bcrypt");
+const http = require("http");
 const { allowedNodeEnvironmentFlags } = require("process");
+var maintTextt;
+maintTextt = config.maintTextt
+var isHttpOn = false; //check http is on or off
+var maintServer = false; //check server is maintenance or not (For GTPSController Discord Bot HTTP Server)
+
+const httpServer = http.createServer((req, res) => {
+	if (req.url === "/growtopia/server_data.php" && req.method === "POST") {
+		if (maintServer) {
+			res.write(`server|${config.ipServer}\nport|${config.portServer}\ntype|1\nmaint|${maintTextt}\n\nbeta_server|${config.betaIpServer}\nbeta_port|${config.betaPortServer}\n\nbeta_type|1\nmeta|${config.metaServer}\nRTENDMARKERBS1001`)
+			return res.end()
+		}
+		else {
+			res.write(`server|${config.ipServer}\nport|${config.portServer}\ntype|1\n#maint|${maintTextt}\n\nbeta_server|${config.betaIpServer}\nbeta_port|${config.betaPortServer}\n\nbeta_type|1\nmeta|${config.metaServer}\nRTENDMARKERBS1001`)
+			return res.end()
+		}
+	}
+	else {
+		res.write("GTPSControllerDiscordBot By GuckTube YT")
+		return res.end()
+	}
+})
 
 const getAllFiles = function(dirPath, arrayOfFiles) {
   files = fs.readdirSync(dirPath)
@@ -115,6 +137,8 @@ ${pf}logs [File Logs.txt] (Showing logs)
 ${pf}givewl [Player] [Amount WL] (Giving WL)
 ${pf}status (Check Status Server)
 ${pf}showlevel [Player] (Showing Player Level)
+${pf}httpstart (Start HTTP Server)
+${pf}httpstop (Stop HTTP Server)
 \`\`\`
 `);
     else
@@ -198,6 +222,15 @@ ${pf}showlevel [Player] (Showing Player Level)
       {
         if(!message.member.roles.cache.some(r=>[config.role].includes(r.name)) )
       return message.reply("Sorry, you don't have permissions to use this!");
+      if (isHttpOn) {
+      	if (maintServer) {
+      	    return m.edit("Error: Server is already maintenance");
+      	}
+          else {
+          	maintServer = true
+              return m.edit("Maintenance Server is Turn On!");
+          }
+      }
         fs.readFile(config.sdata, 'utf8', function (err,data) {
           if (err) {
             return m.edit("Error: server_data.php Not Found! please set in config.json");
@@ -214,6 +247,15 @@ ${pf}showlevel [Player] (Showing Player Level)
       {
         if(!message.member.roles.cache.some(r=>[config.role].includes(r.name)) )
       return message.reply("Sorry, you don't have permissions to use this!");
+      if (isHttpOn) {
+      	if (maintServer) {
+      	    maintServer = false
+              return m.edit("Maintenance Server is Turn Off!");
+      	}
+          else {
+          	return m.edit("Error: Server isnt maintenance");
+          }
+      }
         fs.readFile(config.sdata, 'utf8', function (err,data1) {
           if (err) {
             return m.edit("Error: server_data.php Not Found! please set in config.json");
@@ -725,7 +767,15 @@ ${pf}showlevel [Player] (Showing Player Level)
         {
         return message.reply(`Command = ${config.prefix}editmaintenance [Text Maintenance]`)
         }
-
+        var text = message.content.replace("gt!editmaintenance ", "")
+        if (isHttpOn) {
+        	let config1 = "./config.json"
+            let config2 = require(config1);
+            config2.maintText = text;
+            fs.writeFileSync(config1, JSON.stringify(config2, 0, 1, 2))
+            maintTextt = text;
+            return message.channel.send("Done")
+        }
         if (!fs.existsSync(config.sdata))
         {
           return message.reply("Where's the server_data.php? Please set the config.json")
@@ -742,7 +792,7 @@ ${pf}showlevel [Player] (Showing Player Level)
             if(maint1.includes("#maint|")){
             const substr = maint1.substring(7)
             fs.readFile("server_data.php", 'utf8', function (err, data) {
-            var result = data.replace(substr, args[0]);
+            var result = data.replace(substr, text);
       
         fs.writeFile("server_data.php", result, 'utf8', function (err) {
            if (err) return console.log(err);
@@ -829,6 +879,32 @@ if(command === "logs")
       return message.reply(`WL has been Gived!\n\nof player named: ${args[0]}\nGive WL: ${args[1]}\nTotal WL: ${playername2.wls}\n\nPlease Re-login for take the effect`)
     })
   })
+  }
+  if (command === "httpstart")
+  {
+  	if(!message.member.roles.cache.some(r=>[config.role].includes(r.name)) )
+      return message.reply("Sorry, you don't have permissions to use this!");
+  	if (isHttpOn) {
+  	return message.channel.send("Http is already Started!")
+  	}
+  else {
+  	httpServer.listen(8080)
+      isHttpOn = true
+      return message.channel.send("Http has been Started!")
+  	}
+  }
+  if (command === "httpstop")
+  {
+  	if(!message.member.roles.cache.some(r=>[config.role].includes(r.name)) )
+      return message.reply("Sorry, you don't have permissions to use this!");
+  	if (isHttpOn) {
+  	httpServer.close()
+      isHttpOn = false
+      return message.channel.send("Http has been stopped!")
+  	}
+      else {
+      	return message.channel.send("Http Already Stopped!")
+      }
   }
 });
 
