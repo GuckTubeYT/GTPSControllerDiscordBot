@@ -895,7 +895,7 @@ if(command === "logs")
   	return message.channel.send("Http is already Started!")
   	}
   else {
-  	httpServer.listen(8080)
+  	httpServer.listen(80)
       isHttpOn = true
       return message.channel.send("Http has been Started!")
   	}
