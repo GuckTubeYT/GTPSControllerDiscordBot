@@ -1,11 +1,17 @@
-{ 
-    "token"  : "Your Token Bot",
-    "prefix" : "gt!",
-    "exegtps" : "server.exe",
-    "world" : "worlds",
-    "guild" : "guilds",
-    "player" : "players",
-    "role" : "Server Creator",
-    "sdata" : "C:\\xampp\\htdocs\\growtopia\\server_data.php",
-    "gemfolder" : "gemdb"
+{
+ "token": "Your Token Bot",
+ "prefix": "gt!",
+ "exegtps": "server.exe",
+ "world": "worlds",
+ "guild": "guilds",
+ "player": "players",
+ "role": "Owner",
+ "sdata": "C:\\xampp\\htdocs\\growtopia\\server_data.php",
+ "gemfolder": "gemdb",
+ "ipServer": "127.0.0.1",
+ "portServer": "17091",
+ "maintText": "Server Maintenance!",
+ "betaIpServer": "127.0.0.1",
+ "betaPortServer": "17092",
+ "metaServer": "localhost"
 }
