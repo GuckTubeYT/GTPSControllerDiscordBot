@@ -13,5 +13,8 @@
  "maintText": "Server Maintenance!",
  "betaIpServer": "127.0.0.1",
  "betaPortServer": "17092",
- "metaServer": "localhost"
+ "metaServer": "localhost",
+ "httpwebhook": "your webhook",
+ "httpavatar": "https://res.cloudinary.com/practicaldev/image/fetch/s--i_sb3chq--/c_imagga_scale,f_auto,fl_progressive,h_900,q_auto,w_1600/https://thepracticaldev.s3.amazonaws.com/i/fk0849hvg2rt13bpqhjy.jpg",
+ "httpusername": "Growtopia Login Logs"
 }
