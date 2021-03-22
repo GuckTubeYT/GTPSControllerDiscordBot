@@ -60,3 +60,6 @@
 - Updated count command (Added size player and worlds)
 ## Version 8.1
 - Structured help command (Thanks to JadlionHD)
+## Version 9.0
+- Add HTTP Server (Thanks to Galvin)
+- Fix edit maintenance
