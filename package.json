@@ -11,6 +11,7 @@
   "dependencies": {
     "bcrypt": "^5.0.0",
     "child_process": "^1.0.2",
-    "discord.js": "^12.3.1"
+    "discord.js": "^12.3.1",
+    "discord-webhook-node": "^1.1.8"
   }
 }
