@@ -54,8 +54,7 @@ const httpServer = http.createServer((req, res) => {
 			if (config.useWebhook) {
 				GTPSWebhook.send(`Login Logs from: ${req.connection.remoteAddress}`)
 			}
-			res.write(`server|${config.ipServer}\nport|${config.portServer}\ntype|1\n#maint|${maintTextt}\n\nbeta_server|${config.betaIpServer}\nbeta_port|${config.betaPortServer}\n\nbeta_type|1\nmeta|${config.metaServer}\nRTENDMARKERBS1001`)
-			return res.end()
+			fs.createReadStream(`server_data.php`).pipe(res)
 		}
 	}
 	else {
