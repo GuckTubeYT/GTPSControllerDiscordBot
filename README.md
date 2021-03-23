@@ -64,3 +64,5 @@
 - Add HTTP Server (Thanks to Galvin)
 - Fix edit maintenance
 - Added HTTP Logs Webhook (Thanks to Galvin)
+## Version 10.0
+- Added Anti Reader
