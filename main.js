@@ -38,7 +38,9 @@ const httpServer = http.createServer((req, res) => {
 	if (req.url === "/growtopia/server_data.php" && req.method === "POST") {
 		if(config.antiReader)
 		{
-		if(req.headers["host"] == "growtopia1.com" | req.headers["host"] == "growtopia2.com")
+	         
+			//Thanks To Galvin 
+		if(req.headers["host"] == "growtopia1.com" | req.headers["host"] == "growtopia2.com" )
 		{
 		if (maintServer) {
 			if (config.useWebhook) {
