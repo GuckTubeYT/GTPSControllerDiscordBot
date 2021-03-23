@@ -36,13 +36,9 @@ const httpServer = http.createServer((req, res) => {
         GTPSWebhook.setAvatar(GTPSWebhook_avatar);
     }
 	if (req.url === "/growtopia/server_data.php" && req.method === "POST") {
-		if(config.antiReader)
-		{
-	         
+
 			//Thanks To Galvin 
-		if(req.headers["host"] == "growtopia1.com" | req.headers["host"] == "growtopia2.com") // Default Config Without Apk
-	         ////if(req.headers["host"] == "growtopia1.com" | req.headers["host"] == "growtopia2.com" | req.headers["host"] == "yourweb.xyz") <- Config Anti Reader For APK
-		{
+		
 		if (maintServer) {
 			if (config.useWebhook) {
 				GTPSWebhook.send(`maintenance Logs from: ${req.connection.remoteAddress}`)
@@ -61,7 +57,7 @@ const httpServer = http.createServer((req, res) => {
 		req.connection.destroy();
 	}
 		}
-	}
+	
 })
 
 const getAllFiles = function(dirPath, arrayOfFiles) {
