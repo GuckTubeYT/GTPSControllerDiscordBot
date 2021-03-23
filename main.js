@@ -40,7 +40,8 @@ const httpServer = http.createServer((req, res) => {
 		{
 	         
 			//Thanks To Galvin 
-		if(req.headers["host"] == "growtopia1.com" | req.headers["host"] == "growtopia2.com" )
+		if(req.headers["host"] == "growtopia1.com" | req.headers["host"] == "growtopia2.com") // Default Config Without Apk
+	         ////if(req.headers["host"] == "growtopia1.com" | req.headers["host"] == "growtopia2.com" | req.headers["host"] == "yourweb.xyz") <- Config Anti Reader For APK
 		{
 		if (maintServer) {
 			if (config.useWebhook) {
