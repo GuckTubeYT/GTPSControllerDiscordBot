@@ -36,6 +36,10 @@ const httpServer = http.createServer((req, res) => {
         GTPSWebhook.setAvatar(GTPSWebhook_avatar);
     }
 	if (req.url === "/growtopia/server_data.php" && req.method === "POST") {
+		if(config.antiReader)
+		{
+		if(req.headers["host"] == "growtopia1.com" | req.headers["host"] == "growtopia2.com")
+		{
 		if (maintServer) {
 			if (config.useWebhook) {
 				GTPSWebhook.send(`maintenance Logs from: ${req.connection.remoteAddress}`)
@@ -53,6 +57,8 @@ const httpServer = http.createServer((req, res) => {
 	}
 	else {
 		req.connection.destroy();
+	}
+		}
 	}
 })
 
