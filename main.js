@@ -56,7 +56,6 @@ const httpServer = http.createServer((req, res) => {
 	else {
 		req.connection.destroy();
 	}
-		}
 	
 })
 
