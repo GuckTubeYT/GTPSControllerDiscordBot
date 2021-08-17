@@ -530,7 +530,7 @@ ${pf}httpstop (Stop HTTP Server)
           var gemargs2 = parseInt(gems)
           newgem3 += gemargs2
           const gemssdb =  parseInt(newgem3)
-          fs.writeFile(gemdb2, gemssdb, function() {
+          fs.writeFile(gemdb2, gemssdb.toString(), function() {
             const rgemdb = fs.readFileSync(gemdb2)
             return message.reply(`Gems has been Gived!\n\nof player named: ${args[0]}\nGems Amount: ${args[1]}\nTotal Gems: ${rgemdb}\n\nPlease Re-login for take the effect`)
           })
