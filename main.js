@@ -498,6 +498,95 @@ ${pf}httpstop (Stop HTTP Server)
           })
         })
       })
+    } else if (command == "changepass" && message.channel.type == "text") {
+        return message.reply("Please use this command on DMS, for privacy reasons.")
+    } else if (command == "changepass" && message.channel.type === 'dm') {
+        try {
+            let filter = m => m.author.id === message.author.id
+            message.channel.send(`Please input your **__GrowID__** that you want you want to changes (you have 30 seconds)`).then(() => {
+                message.channel.awaitMessages(filter, {
+                        max: 1,
+                        time: 30000,
+                        errors: ['time']
+                    })
+                    .then(message => {
+                        message = message.first();
+                        if (!fs.existsSync(config.player + "\\" + message.content.toUpperCase() + ".json")) {
+                            return message.reply(`Player with name **__${message.content.toLowerCase()}__** doesn't exist`)
+                        }
+                        let playername1 = `./` + config.player + `/${message.content.toLowerCase()}.json`;
+                        let playername2 = require(playername1);
+                        message.channel.send(`Your GrowID **__${message.content.toLowerCase()}__**, has been found on our database, now please put your **__email__** address (You have 1 minute)`)
+						console.log(`${message.author.tag} trying to change password on GrowID: ${message.content.toLowerCase()}`)
+                        message.channel.awaitMessages(filter, {
+                            max: 1,
+                            time: 60000,
+                            errors: ['time']
+
+                        }).then(message => {
+                            message = message.first();
+                            if (message.content.toLowerCase() == playername2.email) {
+                                message.channel.send(`Your Email (**__${message.content.toUpperCase()}__**) has been has been verified, now please input your lastest login ip (You have 1 minute)`);
+								console.log(`${message.author.tag} verify email address: ${message.content.toLowerCase()}`);
+                            } else {
+								console.log(`${message.author.tag} failed to verify email address: ${message.content.toLowerCase()}`);
+                                return message.reply(`Invalid email address (**__${message.content.toLowerCase()}__**)`);
+                            }
+                            message.channel.awaitMessages(filter, {
+                                max: 1,
+                                time: 60000,
+                                errors: ['time']
+
+                            }).then(message => {
+                                message = message.first();
+                                if (message.content.toLowerCase() == playername2.ip) {
+                                    message.channel.send(`Your IP (**__${message.content.toLowerCase()}__**) has been verified, now input new password (you've 10 seconds)`);
+									console.log(`${message.author.tag} successfully verify ip address: ${message.content.toLowerCase()}`);
+                                } else {
+									console.log(`${message.author.tag} failed to verify ip address: ${message.content.toLowerCase()}`)
+                                    return message.reply(`Invalid ip address for (**__${message.content.toUpperCase()}__**)`);
+                                }
+
+                                message.channel.awaitMessages(filter, {
+                                    max: 1,
+                                    time: 60000,
+                                    errors: ['time']
+                                }).then(message => {
+                                    message = message.first();
+                                    playername2.password = message.content.toLowerCase();
+                                    fs.writeFile(playername1, JSON.stringify(playername2), function writeJSON(err) {
+                                        if (err) {
+											console.log("cannot make changes on file")
+                                            return messsage.reply("**__Error__**: cannot access the file :/");
+                                        } else {
+											console.log(`${message.author.tag} successfully changed password for : (${playername1}), with new password ${message.content.toLowerCase()}`);
+                                            return message.reply(`Successfully changed password!\n||GrowID: (${playername1}) with new password (**__${message.content.toLowerCase()}__**)||`);
+											
+                                        }
+                                    })
+                                }).catch(collected => {
+									console.log(`Time has run out for user ${message.author.tag} on Changing GrowID`);
+                                    return message.channel.send("Sorry your time to verificate **__has run out__**.");
+                                });
+
+                            }).catch(collected => {
+								console.log(`Time has run out for user ${message.author.tag} on verify email`);
+                                return message.channel.send('Sorry your time to verificate **__has run out__**.');
+                            });
+
+                        }).catch(collected => {
+							console.log(`Time has run out for user ${message.author.tag} on verify ip address`)
+                            return message.channel.send('Sorry your time to verificate **__has run out__**.');
+                        });
+                    }).catch(collected => {
+						console.log(`Time has run out for user ${message.author.tag} on Changing Password`);
+                        return message.channel.send('Sorry your time to verificate **__has run out__**.');
+                    });
+            })
+
+        } catch (err) {
+            console.log(err)
+        }
     }
     if (command === "givegems")
     {
