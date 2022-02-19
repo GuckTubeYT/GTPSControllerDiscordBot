@@ -15,7 +15,7 @@ const Discord = require("discord.js");
 const { exec } = require("child_process");
 const kill = require("child_process").exec
 const fs = require('fs')
-const client = new Discord.Client();
+const client = new Discord.Client({ intents: Object.values(Discord.Intents.FLAGS).reduce((a, b) => a + b) });
 const config = require("./config.json");
 const path = require("path");
 const bcrypt = require("bcrypt");
@@ -123,7 +123,7 @@ client.on("ready", () => {
   client.user.setActivity(`GTPSController By GuckTube YT`);
 });
 
-client.on("message", async message => {
+client.on("messageCreate", async message => {
   if(message.author.bot) return;
   if(!message.content.startsWith(config.prefix)) return;
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
